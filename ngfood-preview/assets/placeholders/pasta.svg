@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Фотограф не успел — пасту съели раньше">
+  <defs>
+    <linearGradient id="pg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b1113"/><stop offset="1" stop-color="#521a1d"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="55%">
+      <stop offset="0" stop-color="#e03131" stop-opacity=".28"/><stop offset="1" stop-color="#e03131" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#pg)"/>
+  <rect width="400" height="300" fill="url(#glow)"/>
+
+  <!-- тарелка -->
+  <ellipse cx="200" cy="205" rx="108" ry="30" fill="#3d1518"/>
+  <ellipse cx="200" cy="198" rx="100" ry="27" fill="#f6ede4"/>
+  <ellipse cx="200" cy="198" rx="74" ry="18" fill="#efe0d2"/>
+
+  <!-- остатки пасты -->
+  <path d="M150 196c14-10 34-9 46 1s32 10 44-1" stroke="#d9822b" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M164 204c12-8 28-7 38 1s26 8 36-1" stroke="#c96f22" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <circle cx="246" cy="200" r="6" fill="#c92a2a"/>
+  <circle cx="168" cy="201" r="5" fill="#c92a2a"/>
+
+  <!-- вилка с накрученной пастой -->
+  <g transform="rotate(-24 272 120)">
+    <rect x="266" y="52" width="12" height="96" rx="6" fill="#cfd4d8"/>
+    <rect x="258" y="140" width="28" height="10" rx="5" fill="#cfd4d8"/>
+    <path d="M262 150v34M270 150v38M278 150v34" stroke="#cfd4d8" stroke-width="5" stroke-linecap="round"/>
+    <path d="M262 154c-14 8-16 22-4 28s30 2 34-12" stroke="#e8a33d" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M270 158c-12 10-10 22 2 26s26 0 28-12" stroke="#f2b957" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- камера со слэшем -->
+  <g transform="translate(96 84) rotate(-8)">
+    <rect x="0" y="10" width="62" height="42" rx="8" fill="#1a0d0e" stroke="#e03131" stroke-width="3"/>
+    <rect x="10" y="0" width="24" height="12" rx="4" fill="#1a0d0e" stroke="#e03131" stroke-width="3"/>
+    <circle cx="31" cy="31" r="12" fill="none" stroke="#e03131" stroke-width="3"/>
+    <circle cx="31" cy="31" r="5" fill="#e03131"/>
+    <line x1="-4" y1="60" x2="70" y2="0" stroke="#e03131" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <!-- пар -->
+  <path d="M176 150c-8-14 8-20 0-34" stroke="#f6ede4" stroke-opacity=".35" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M204 146c-8-14 8-20 0-34" stroke="#f6ede4" stroke-opacity=".25" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>

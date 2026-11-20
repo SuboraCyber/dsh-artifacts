@@ -6,9 +6,22 @@
       "title": "Сайт ngfood — просмотр",
       "kind": "html",
       "createdAt": "2026-11-20T09:33:05.175Z",
-      "updatedAt": "2026-11-20T09:48:16.539Z",
-      "rev": 2,
+      "updatedAt": "2026-11-20T09:56:09.457Z",
+      "rev": 3,
       "files": [
+        "assets/app.css",
+        "assets/brand/gorky-white.png",
+        "assets/brand/susi-white.png",
+        "assets/covers/gorky-hero.jpg",
+        "assets/covers/gorky.jpg",
+        "assets/covers/pasta-hero.jpg",
+        "assets/covers/pasta.jpg",
+        "assets/covers/susi-hero.jpg",
+        "assets/covers/susi.jpg",
+        "assets/icon.svg",
+        "assets/placeholders/gorky.svg",
+        "assets/placeholders/pasta.svg",
+        "assets/placeholders/susi.svg",
         "brand/gorky-black.png",
         "brand/gorky-white.png",
         "brand/sladkiy-pink.png",
@@ -21,7 +34,7 @@
         "pasta.html",
         "susi.html"
       ],
-      "description": "Статичный снапшот сайта ngfood с исправленными пропорциями фото и рабочими картинками"
+      "description": "Снапшот сайта с картинками: обложки, логотипы, заглушки блюд"
     }
   },
   "tombstones": []

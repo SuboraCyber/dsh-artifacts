@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Фото не сделали — пельмень убежал">
+  <defs>
+    <linearGradient id="gg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f0f10"/><stop offset="1" stop-color="#1b1a17"/>
+    </linearGradient>
+    <radialGradient id="gold" cx="50%" cy="45%" r="55%">
+      <stop offset="0" stop-color="#d4af37" stop-opacity=".22"/><stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#gg)"/>
+  <rect width="400" height="300" fill="url(#gold)"/>
+
+  <!-- тень -->
+  <ellipse cx="196" cy="232" rx="86" ry="16" fill="#000" opacity=".45"/>
+
+  <!-- пельмень-беглец с ножками -->
+  <g>
+    <path d="M118 196c0-40 34-70 78-70s78 30 78 70c0 22-18 34-78 34s-78-12-78-34z" fill="#f3e6cf" stroke="#d4af37" stroke-width="4"/>
+    <path d="M126 186c18-16 44-24 70-24s52 8 70 24" stroke="#d9c49b" stroke-width="5" fill="none"/>
+    <path d="M146 176c6-10 14-15 22-17M196 168c8-3 16-3 24 0" stroke="#cbb388" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <!-- глаза -->
+    <circle cx="176" cy="196" r="7" fill="#1b1a17"/>
+    <circle cx="216" cy="196" r="7" fill="#1b1a17"/>
+    <circle cx="178" cy="194" r="2.4" fill="#fff"/>
+    <circle cx="218" cy="194" r="2.4" fill="#fff"/>
+    <!-- улыбка-удивление -->
+    <ellipse cx="196" cy="214" rx="9" ry="11" fill="#1b1a17"/>
+    <!-- ножки -->
+    <path d="M164 228l-10 22M228 228l12 20" stroke="#f3e6cf" stroke-width="8" stroke-linecap="round"/>
+    <path d="M150 250h16M238 248h16" stroke="#d4af37" stroke-width="6" stroke-linecap="round"/>
+    <!-- следы -->
+    <circle cx="146" cy="256" r="3" fill="#d4af37" opacity=".5"/>
+    <circle cx="262" cy="252" r="3" fill="#d4af37" opacity=".5"/>
+  </g>
+
+  <!-- вилка-погоня -->
+  <g transform="translate(300 120) rotate(18)">
+    <rect x="0" y="0" width="10" height="74" rx="5" fill="#9aa0a6"/>
+    <path d="M-6 74v22M0 74v26M6 74v22" stroke="#9aa0a6" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- золотые блёстки -->
+  <g fill="#d4af37" opacity=".85">
+    <path d="M96 96l4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/>
+    <path d="M312 78l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/>
+    <circle cx="70" cy="150" r="3"/>
+    <circle cx="336" cy="176" r="2.5"/>
+  </g>
+</svg>
