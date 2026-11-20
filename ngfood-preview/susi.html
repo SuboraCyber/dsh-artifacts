@@ -1,0 +1,1533 @@
+<!DOCTYPE html><html lang="ru"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><style>/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/next@15.1.0_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/.pnpm/next@15.1.0_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./app/globals.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+:root {
+  /* ── этап 15: светлая тема ────────────────────────────────────────────────
+     Фон страниц белый, карточки белые с рамкой и мягкой тенью, вложенные
+     плашки — светло-серые #f6f7f9. Внутри темы бренда (см. .brand-shell)
+     эти же переменные переопределяются через lib/brands.ts → brandCssVars().
+     Контраст всех пар считается скриптом scripts/contrast.mjs. */
+  --bg: #ffffff;
+  --bg-to: #ffffff;
+  /* поверхность карточки / модалки */
+  --card: #ffffff;
+  /* вложенная плашка: поля, врезки, опции */
+  --panel: #f6f7f9;
+  --text: #14161a;
+  --muted: #5b616b;
+  /* заливка кнопок, активной категории, бейджа */
+  --accent: #c92a2a;
+  /* текст/цена/ссылки в акцентном цвете — затемнён под белый фон */
+  --accent-text: #b02525;
+  /* текст на акцентной заливке */
+  --on-accent: #ffffff;
+  --accent-soft: #fdecec;
+  /* поле ввода: внутри темы бренда переопределяется */
+  --input: #ffffff;
+  --line: #e6e8ec;
+  /* этап 15 (дополнение владельца): единая шкала скруглений. «Пилюль» на сайте
+     больше нет — только скруглённые прямоугольники. Круглыми остаются лишь
+     настоящие круги: радиокнопки, чекбоксы, точки статуса, иконки-кружки. */
+  --r-lg: 16px; /* карточки, модалки, большие панели */
+  --r-md: 12px; /* кнопки, поля, категории-чипы, бейджи, тосты */
+  --r-sm: 8px;  /* мелкие плашки, теги, подписи внутри карточек */
+  /* семантика: успех / ошибка / предупреждение */
+  --ok-bg: #eaf6ee;
+  --ok-line: #bfe0cb;
+  --ok-text: #1a6b3d;
+  --ok-text-soft: #2b7d4d;
+  --bad-bg: #fdeeee;
+  --bad-line: #f0c9c7;
+  --bad-text: #b02525;
+  --warn-bg: #fdf6e6;
+  --warn-line: #ead9a8;
+  --warn-text: #7a5a10;
+  /* тени: на белом они должны быть лёгкими, иначе выглядят как грязь */
+  --shadow-1: 0 1px 2px rgba(16,24,40,.04), 0 1px 3px rgba(16,24,40,.06);
+  --shadow-2: 0 10px 30px rgba(16,24,40,.10);
+  --shadow-3: 0 18px 48px rgba(16,24,40,.16);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px 64px; }
+
+header.top {
+  position: -webkit-sticky;
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(255,255,255,.92); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+}
+
+.brand { display: flex; align-items: baseline; gap: 10px; }
+.brand h1 { font-size: 18px; margin: 0; letter-spacing: -.02em; }
+.brand span { color: var(--muted); font-size: 13px; }
+
+.cats {
+  display: flex; gap: 8px; overflow-x: auto; padding: 12px 0; scrollbar-width: none;
+}
+.cats::-webkit-scrollbar { display: none; }
+.cats a {
+  white-space: nowrap; padding: 8px 14px; border-radius: var(--r-md);
+  background: var(--card); color: var(--text); text-decoration: none; font-size: 14px;
+  border: 1px solid var(--line);
+}
+.cats a:hover { border-color: var(--accent); }
+
+h2.section { font-size: 22px; margin: 32px 0 16px; letter-spacing: -.02em; }
+
+.grid {
+  display: grid; grid-gap: 14px; gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg);
+  overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: var(--shadow-1);
+}
+.card img { width: 100%; height: 150px; object-fit: cover; background: #f2f3f5; }
+.card .body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 6px; flex: 1 1; }
+.card .name { font-size: 15px; line-height: 1.3; }
+.card .meta { color: var(--muted); font-size: 13px; }
+.card .price { font-weight: 600; font-size: 16px; margin-top: auto; }
+.card.stop { opacity: .45; }
+.badge {
+  display: inline-block; font-size: 12px; padding: 3px 8px; border-radius: var(--r-sm);
+  background: #fdeeee; color: #b02525; border: 1px solid #f0c9c7;
+}
+
+.note { color: var(--muted); font-size: 13px; margin-top: 24px; }
+.error { background: #fdeeee; border: 1px solid #f0c9c7; padding: 14px; border-radius: var(--r-md); margin-top: 20px; }
+
+/* ── корзина ── */
+.add {
+  margin-top: 8px; padding: 8px 12px; border-radius: var(--r-md); border: 1px solid var(--line);
+  background: var(--accent); color: var(--on-accent, #fff); font-size: 14px; cursor: pointer;
+}
+.add:hover { filter: brightness(1.08); }
+
+.cartbar {
+  position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 20;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 18px; border-radius: var(--r-lg); border: none; cursor: pointer;
+  background: var(--accent); color: var(--on-accent, #fff); font-size: 15px; font-weight: 600;
+  max-width: 1148px; margin: 0 auto; box-shadow: 0 12px 30px rgba(16,24,40,.18);
+}
+
+.modal {
+  position: fixed; inset: 0; background: rgba(17,20,26,.45); z-index: 30;
+  display: flex; align-items: center; justify-content: center; padding: 16px;
+  /* длинная форма оформления (доставка + адрес + бонусы) выше экрана телефона:
+     контейнер прокручивается, margin:auto держит окно по центру, пока оно влезает */
+  overflow-y: auto; overscroll-behavior: contain;
+}
+.modal-body {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: 20px; width: 100%; max-width: 440px; display: flex; flex-direction: column; gap: 10px;
+  box-shadow: var(--shadow-3); margin: auto;
+}
+.modal-body h3 { margin: 0 0 4px; }
+.modal-body input[type="text"], .modal-body input:not([type]) {
+  padding: 11px 12px; border-radius: var(--r-md); border: 1px solid var(--line);
+  background: var(--input, #ffffff); color: var(--text); font-size: 15px;
+}
+.lines { display: flex; flex-direction: column; gap: 6px; max-height: 220px; overflow: auto; }
+.line { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 14px; }
+.qty { display: flex; align-items: center; gap: 6px; }
+.qty button {
+  width: 26px; height: 26px; border-radius: var(--r-sm); border: 1px solid var(--line);
+  background: var(--input, #ffffff); color: var(--text); cursor: pointer;
+}
+.row { display: flex; gap: 16px; font-size: 14px; }
+.sum { margin-top: 6px; font-size: 16px; }
+.send {
+  margin-top: 6px; padding: 12px; border-radius: var(--r-md); border: none;
+  background: var(--accent); color: var(--on-accent, #fff); font-size: 15px; font-weight: 600; cursor: pointer;
+}
+.send:disabled { opacity: .6; cursor: default; }
+
+.toast {
+  position: fixed; left: 50%; transform: translateX(-50%); bottom: 90px; z-index: 40;
+  background: var(--ok-bg); border: 1px solid var(--ok-line); color: var(--ok-text);
+  padding: 12px 16px; border-radius: var(--r-md); font-size: 14px; cursor: pointer;
+  box-shadow: var(--shadow-2);
+}
+
+/* ── страница статуса ── */
+.backlink { color: var(--muted); text-decoration: none; }
+.status-card { margin-top: 24px; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 20px; max-width: 560px; }
+.status-card h2 { margin: 0 0 6px; }
+.status-now { font-size: 22px; font-weight: 700; color: var(--accent-text); margin: 0 0 16px; }
+.steps { list-style: none; padding: 0; margin: 0 0 18px; display: flex; flex-direction: column; gap: 6px; }
+.steps li { color: var(--muted); font-size: 14px; padding-left: 22px; position: relative; }
+.steps li::before { content: '○'; position: absolute; left: 0; }
+.steps li.done { color: var(--text); }
+.steps li.done::before { content: '●'; color: var(--accent); }
+
+/* ── этап 8: оплата картой на странице заказа ── */
+.pay-block { margin: 18px 0 0; display: flex; flex-direction: column; gap: 10px; }
+.pay-btn {
+  padding: 14px; border-radius: var(--r-md); border: none; background: var(--accent);
+  color: var(--on-accent, #fff); font-size: 16px; font-weight: 600; cursor: pointer;
+}
+.pay-btn:disabled { opacity: .6; cursor: default; }
+.pay-paid {
+  display: flex; flex-direction: column; gap: 4px; padding: 14px 16px;
+  background: #eaf6ee; border: 1px solid #bfe0cb; border-radius: var(--r-md); color: #1a6b3d;
+}
+.pay-paid b { font-size: 15px; }
+.pay-paid span { font-size: 13px; color: #2b7d4d; }
+.pay-hint { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+/* этап 13: оплата не онлайн (наличные/терминал курьеру, касса) */
+.pay-offline {
+  display: flex; flex-direction: column; gap: 4px; padding: 14px 16px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-md);
+}
+.pay-offline b { font-size: 15px; }
+.pay-offline span { font-size: 13px; color: var(--muted); }
+.pay-notice { margin: 0; font-size: 13px; color: #1a6b3d; }
+.pay-error { margin: 0; font-size: 13px; color: #b02525; }
+
+/* ── выбор бренда (главная) ── */
+.brandpicker{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));grid-gap:20px;gap:20px;margin-top:28px}
+.brandcard{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius: var(--r-lg);overflow:hidden;text-decoration:none;color:var(--text);box-shadow:var(--shadow-1);transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}
+.brandcard:hover{transform:translateY(-4px);border-color:var(--accent)}
+.brandcard-cover{position:relative;height:190px;background-size:cover;background-position:center;background-repeat:no-repeat}
+/* обложка карточки красится темой бренда из lib/brands.ts (inline style),
+   классы brandcard--<id> остались только как крючок для точечных правок */
+.brandcard-initial{position:absolute;right:16px;bottom:8px;font-size:64px;font-weight:800;opacity:.18;color:#fff}
+.brandcard-body{padding:16px 18px 20px}
+.brandcard-body h2{margin:0 0 6px;font-size:22px}
+.brandcard-body p{margin:0 0 10px;color:var(--muted);font-size:14px}
+.brandcard-address{display:block;color:var(--muted);font-size:13px;margin-bottom:14px}
+.brandcard-go{color:var(--accent-text);font-weight:600;font-size:14px}
+.brandswitch{display:flex;gap:14px;margin:10px 0 6px;font-size:14px}
+.brandswitch a{color:var(--muted);text-decoration:none}
+.brandswitch a:hover{color:var(--accent-text)}
+.line-brand{display:block;font-size:11px;color:var(--accent-text);text-transform:uppercase;letter-spacing:.04em}
+
+/* ── личный кабинет ── */
+.acc-brandlink { color: inherit; text-decoration: none; }
+.acc-loading { color: var(--muted); margin-top: 24px; }
+.acc-card {
+  margin-top: 24px; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: 20px; max-width: 560px; display: flex; flex-direction: column; gap: 14px;
+}
+.acc-card h2 { margin: 0; font-size: 20px; letter-spacing: -.02em; }
+.acc-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.acc-phone { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+.acc-logout {
+  padding: 8px 14px; border-radius: var(--r-md); border: 1px solid var(--line);
+  background: var(--input, #ffffff); color: var(--muted); font-size: 13px; cursor: pointer; white-space: nowrap;
+}
+.acc-logout:hover { border-color: var(--accent); color: var(--text); }
+.acc-bonus {
+  display: flex; flex-direction: column; gap: 4px; padding: 16px;
+  border-radius: var(--r-md); border: 1px solid var(--line); background: var(--panel);
+}
+.acc-bonus-label { color: var(--muted); font-size: 13px; }
+.acc-bonus-value { font-size: 28px; letter-spacing: -.02em; color: var(--accent-text); }
+.acc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.acc-list li { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+.acc-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.acc-list li > span { color: var(--muted); }
+.acc-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.acc-badge {
+  padding: 5px 12px; border-radius: var(--r-md); font-size: 12px;
+  background: rgba(201,42,42,.10); border: 1px solid rgba(201,42,42,.32); color: #b02525;
+}
+.acc-note, .acc-sub { color: var(--muted); font-size: 13px; line-height: 1.5; margin: 0; }
+.acc-form { display: flex; flex-direction: column; gap: 10px; }
+.acc-form input {
+  padding: 12px; border-radius: var(--r-md); border: 1px solid var(--line);
+  background: var(--input, #ffffff); color: var(--text); font-size: 16px;
+}
+.acc-form button[type="submit"] {
+  padding: 12px; border-radius: var(--r-md); border: none; background: var(--accent);
+  color: var(--on-accent, #fff); font-size: 15px; font-weight: 600; cursor: pointer;
+}
+.acc-form button[type="submit"]:disabled { opacity: .6; cursor: default; }
+.acc-link {
+  background: none; border: none; color: var(--muted); font-size: 13px; cursor: pointer;
+  text-decoration: underline; align-self: flex-start; padding: 0;
+}
+.acc-hint { margin: 0; font-size: 13px; color: #1a6b3d; }
+.acc-error { margin: 0; font-size: 13px; color: #b02525; }
+
+/* ── бонусы в корзине ── */
+.cart-bonus { font-size: 13px; color: var(--muted); }
+.cart-bonus b { color: #b02525; }
+.cart-guest { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.cart-guest a { color: #b02525; }
+
+/* ── оплата бонусами (этап 3) ── */
+.cart-bonus-pay { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; padding: 8px 10px; border: 1px solid var(--line); border-radius: var(--r-md); }
+.cart-bonus-toggle { display: flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; }
+.cart-bonus-toggle small { color: var(--muted); font-size: 12px; }
+.cart-bonus-pay input[type="range"] { width: 100%; accent-color: #b02525; }
+.cart-bonus-sum { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; color: var(--muted); }
+.cart-bonus-sum b { color: #b02525; font-size: 14px; }
+.cart-delivery--bad-text { color: #b02525; }
+
+/* ── способ оплаты в корзине (этап 13) ── */
+.cart-pay { display: flex; flex-direction: column; gap: 6px; }
+.cart-pay-title { font-size: 13px; color: var(--muted); }
+.cart-pay-opt {
+  display: flex; align-items: flex-start; gap: 9px; cursor: pointer;
+  padding: 9px 11px; border: 1px solid var(--line); border-radius: var(--r-md);
+  background: var(--panel);
+}
+.cart-pay-opt--on { border-color: #b02525; }
+.cart-pay-opt input { margin-top: 3px; accent-color: #b02525; }
+.cart-pay-text { display: flex; flex-direction: column; gap: 2px; }
+.cart-pay-text b { font-size: 14px; color: var(--text); }
+.cart-pay-text small { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+/* ── минимальная сумма заказа (этап 13) ── */
+.cart-min { display: flex; flex-direction: column; gap: 3px; font-size: 13px; color: var(--muted); }
+.cart-min b { color: var(--text); font-size: 13px; }
+.cart-min--bad { color: #b02525; }
+.cart-min--bad b { color: #b02525; }
+
+/* ── шапка: ссылка в кабинет ── */
+.topline { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.toplink { color: var(--muted); font-size: 13px; text-decoration: none; white-space: nowrap; }
+.toplink:hover { color: var(--accent-text); }
+
+/* ── доставка: страница ── */
+.delivery-intro {
+  color: var(--muted); font-size: 15px; line-height: 1.6; max-width: 780px; margin: 24px 0 0;
+}
+.delivery-check {
+  margin-top: 28px; background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: 20px;
+}
+.delivery-check h2 { margin: 0 0 14px; font-size: 20px; letter-spacing: -.02em; }
+.delivery-form { display: flex; gap: 10px; flex-wrap: wrap; }
+.delivery-form input {
+  padding: 12px; border-radius: var(--r-md); border: 1px solid var(--line);
+  background: var(--input, #ffffff); color: var(--text); font-size: 15px;
+}
+.delivery-form input:focus { outline: none; border-color: var(--accent); }
+.delivery-form input[type="text"] { flex: 2 1 320px; }
+.delivery-form input[type="number"] { flex: 1 1 150px; }
+.delivery-form button {
+  flex: 0 0 auto; padding: 12px 24px; border-radius: var(--r-md); border: none;
+  background: var(--accent); color: var(--on-accent, #fff); font-size: 15px; font-weight: 600; cursor: pointer;
+}
+.delivery-form button:disabled { opacity: .6; cursor: default; }
+.delivery-error { margin: 12px 0 0; font-size: 14px; color: #b02525; }
+.delivery-result {
+  margin-top: 14px; padding: 14px 16px; border-radius: var(--r-md);
+  border: 1px solid #bfe0cb; background: #eaf6ee;
+}
+.delivery-result--warn { border-color: #f0c9c7; background: #fdeeee; }
+.delivery-result-title { margin: 0 0 8px; font-size: 16px; font-weight: 600; }
+.delivery-result-list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 4px; font-size: 14px;
+}
+.delivery-warn { margin: 10px 0 0; font-size: 14px; color: #b02525; }
+.delivery-addr { margin: 10px 0 0; font-size: 12px; color: var(--muted); line-height: 1.5; }
+.delivery-addr a { color: var(--accent-text); }
+
+/* ── доставка: карта зон ── */
+.zone-map-block { margin-top: 16px; }
+.zone-map {
+  height: 460px; border-radius: var(--r-lg); border: 1px solid var(--line);
+  overflow: hidden; background: var(--panel); z-index: 0;
+}
+.zone-map-error { margin: 10px 0 0; font-size: 13px; color: #b02525; }
+.zone-legend { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.zone-legend li {
+  display: grid; grid-template-columns: 14px 90px 170px 1fr; align-items: center; grid-gap: 10px; gap: 10px;
+  font-size: 14px; padding: 9px 12px; border-radius: var(--r-md);
+  background: var(--card); border: 1px solid var(--line);
+}
+.zone-swatch { width: 14px; height: 14px; border-radius: 6px; display: inline-block; }
+.zone-name { font-weight: 600; }
+.zone-venue { color: var(--text); font-size: 13px; }
+.zone-rule { color: var(--muted); font-size: 13px; }
+.zone-legend-note { color: var(--muted); font-size: 12px; margin: 10px 0 0; }
+.leaflet-tooltip.zone-label {
+  background: rgba(255,255,255,.94); color: var(--text); border: 1px solid var(--line);
+  border-radius: var(--r-sm); font-size: 12px; padding: 3px 8px;
+  box-shadow: var(--shadow-1); opacity: 1;
+}
+.leaflet-tooltip.zone-label::before { display: none; }
+.leaflet-container { font-family: inherit; background: var(--input, #ffffff); }
+/* ссылки в подписи карты (OpenStreetMap) — в цвет акцента: дефолтный голубой
+   Leaflet на серой плашке даёт 3.6 при нужных 4.5 */
+.leaflet-container .leaflet-control-attribution a { color: var(--accent-text); }
+@media (max-width: 640px) {
+  .zone-map { height: 340px; }
+  .zone-legend li { grid-template-columns: 14px 1fr; row-gap: 2px; }
+  .zone-rule { grid-column: 2 / -1; }
+}
+
+/* ── корзина: доставка ── */
+.cart-delivery {
+  display: flex; flex-direction: column; gap: 3px; font-size: 13px; color: var(--muted);
+  padding: 10px 12px; border-radius: var(--r-md); border: 1px solid var(--line); background: var(--panel);
+}
+.cart-delivery b { color: var(--text); font-size: 13px; }
+.cart-delivery--bad { border-color: #f0c9c7; background: #fdeeee; color: #b02525; }
+.cart-delivery--bad b { color: #b02525; }
+/* «Очистить корзину» в предупреждении о разных точках (этап 15) */
+.cart-clear {
+  align-self: flex-start; margin-top: 2px; padding: 6px 12px;
+  border-radius: var(--r-md); border: 1px solid #f0c9c7; background: #ffffff;
+  color: #b02525; font-family: inherit; font-size: 12.5px; font-weight: 600; cursor: pointer;
+}
+.cart-clear:hover { border-color: #b02525; }
+.cart-delivery a { color: var(--accent-text); }
+.sum-row { display: block; }
+.sum-row + .sum-row { margin-top: 2px; font-size: 15px; }
+.sum-row:first-child { font-size: 13px; color: var(--muted); }
+
+/* ── скидка гостя в корзине (этап 7) ── */
+.cart-discount { color: #157347; }
+.cart-discount-toggle {
+  background: none; border: none; padding: 0; margin-left: 4px; cursor: pointer;
+  color: var(--muted); font-size: 12px; text-decoration: underline; font-family: inherit;
+}
+.cart-discount-item { display: block; font-size: 12px; color: var(--muted); padding-left: 10px; }
+.cart-calc-note { display: block; font-size: 12px; color: var(--muted); }
+
+/* ── шапка бренда: широкая обложка ── */
+header.brandhero {
+  display: flex; align-items: flex-end; min-height: 210px;
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+  background-color: #ffffff; border-bottom: 1px solid var(--line);
+}
+.brandhero-inner {
+  width: 100%; display: flex; align-items: baseline; gap: 14px;
+  padding: 48px 16px 20px;
+}
+.brandhero h1 { margin: 0; font-size: 34px; letter-spacing: -.02em; }
+/* подпись на обложке: на светлом градиенте белый текст исчезал */
+.brandhero span { color: var(--muted); font-size: 14px; }
+@media (max-width: 640px) {
+  header.brandhero { min-height: 150px; }
+  .brandhero-inner { flex-direction: column; align-items: flex-start; gap: 4px; padding: 32px 16px 14px; }
+  .brandhero h1 { font-size: 24px; }
+}
+
+/* ── главная: ссылки в шапке ── */
+.topnav { display: flex; gap: 16px; align-items: baseline; }
+
+/* ══ этап 15: корзина в шапке — на всех страницах ═══════════════════════════
+   Кнопка появляется, только когда в корзине что-то есть: «0 позиций» в шапке
+   не держим. На мобильном — иконка и число, на десктопе — ещё и сумма.
+   Панель «Оформить» на странице бренда живёт внизу (position: fixed), кнопка —
+   в липкой шапке сверху: на 390×844 они не пересекаются. */
+.topline-actions {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+
+.cartbtn {
+  position: relative; display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 12px; border-radius: var(--r-md);
+  border: 1px solid var(--line); background: #ffffff; color: var(--text);
+  font-family: inherit; font-size: 13px; line-height: 1; cursor: pointer;
+  white-space: nowrap; box-shadow: var(--shadow-1);
+  transition: border-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+.cartbtn:hover { border-color: var(--accent); color: var(--accent-text); box-shadow: var(--shadow-2); }
+.cartbtn:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+.cartbtn-ico { width: 17px; height: 17px; display: block; flex: 0 0 auto; }
+.cartbtn-badge {
+  min-width: 18px; height: 18px; padding: 0 5px; border-radius: var(--r-sm);
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--accent); color: var(--on-accent);
+  font-size: 11px; font-weight: 700; font-feature-settings: "tnum"; font-variant-numeric: tabular-nums;
+}
+.cartbtn-sum { font-weight: 600; font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+
+@media (max-width: 640px) {
+  /* на телефоне сумма не влезает рядом с «все заведения» — оставляем число */
+  .cartbtn-sum { display: none; }
+  .cartbtn { padding: 7px 10px; gap: 6px; }
+  .topline-actions { gap: 10px; }
+}
+
+/* ── выбор точки выдачи (Pasta: Горького / Холмогорова) ── */
+.venueswitch { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 10px 0 2px; font-size: 14px; }
+.venueswitch-label { color: var(--muted); font-size: 13px; margin-right: 2px; }
+.venueswitch a {
+  padding: 7px 14px; border-radius: var(--r-md); border: 1px solid var(--line);
+  background: var(--input, #ffffff); color: var(--text); text-decoration: none; white-space: nowrap;
+}
+.venueswitch a:hover { border-color: var(--accent); }
+.venueswitch a.active { background: var(--accent); border-color: var(--accent); color: var(--on-accent, #fff); font-weight: 600; }
+.cart-venue { font-size: 13px; color: var(--muted); }
+
+/* ── время и комментарий в корзине (этап 4) ── */
+.cart-time { display: flex; flex-direction: column; gap: 8px; }
+.cart-time-select { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); }
+.cart-time-select select {
+  padding: 9px 12px; border-radius: var(--r-md); border: 1px solid var(--line);
+  background: var(--input, #ffffff); color: var(--text); font-size: 15px; cursor: pointer;
+}
+.cart-time-select select:focus { outline: none; border-color: var(--accent); }
+.cart-comment { display: flex; flex-direction: column; gap: 4px; }
+.cart-comment textarea {
+  padding: 11px 12px; border-radius: var(--r-md); border: 1px solid var(--line);
+  background: var(--input, #ffffff); color: var(--text); font-size: 15px;
+  font-family: inherit; min-height: 58px; resize: vertical;
+}
+.cart-comment textarea:focus { outline: none; border-color: var(--accent); }
+.cart-comment-count { align-self: flex-end; font-size: 11px; color: var(--muted); }
+
+/* ── админка заказов (этап 4) ── */
+.admin-wrap { padding-top: 20px; }
+.admin-stats { display: flex; gap: 22px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.admin-stats b { color: var(--text); font-size: 15px; }
+.admin-warn {
+  margin-top: 14px; padding: 12px 14px; border-radius: var(--r-md);
+  background: #fdeeee; border: 1px solid #f0c9c7; color: #b02525; font-size: 13px;
+}
+.admin-tablewrap {
+  margin-top: 18px; overflow-x: auto; background: var(--card);
+  border: 1px solid var(--line); border-radius: var(--r-lg);
+}
+.admin-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 1020px; }
+.admin-table th {
+  position: -webkit-sticky;
+  position: sticky; top: 0; text-align: left; padding: 12px 14px;
+  color: var(--muted); font-weight: 500; white-space: nowrap;
+  background: #f6f7f9; border-bottom: 1px solid var(--line);
+}
+.admin-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tbody tr:hover { background: #f6f7f9; }
+.admin-num, .admin-mono { white-space: nowrap; }
+.admin-mono { color: var(--muted); font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+.admin-num { font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+.admin-sub { color: var(--muted); font-size: 12px; margin-top: 3px; max-width: 260px; }
+.admin-mode {
+  display: inline-block; padding: 2px 8px; border-radius: var(--r-sm); font-size: 12px;
+  border: 1px solid var(--line); color: var(--muted); white-space: nowrap;
+}
+.admin-mode--courier { border-color: #ead9a8; background: #fdf6e6; color: #7a5a10; }
+.admin-status { color: var(--text); }
+.admin-link { color: var(--accent-text); text-decoration: none; white-space: nowrap; }
+.admin-link:hover { text-decoration: underline; }
+
+/* ── мини-игры (этап 5) ─────────────────────────────────────────────────── */
+.games-lead {
+  color: var(--muted); font-size: 15px; line-height: 1.6;
+  max-width: 780px; margin: 0 0 4px;
+}
+.games-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-gap: 20px;
+  gap: 20px; margin-top: 24px;
+}
+.game-card {
+  display: flex; flex-direction: column; background: var(--card);
+  border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden;
+  text-decoration: none; color: var(--text);
+  transition: transform .15s ease, border-color .15s ease;
+}
+.game-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.game-card-cover { height: 170px; display: grid; place-items: center; }
+.game-card-emoji { font-size: 72px; line-height: 1; filter: drop-shadow(0 8px 22px rgba(16,24,40,.10)); }
+.game-card-body { display: flex; flex-direction: column; gap: 8px; padding: 16px 18px 20px; flex: 1 1; }
+.game-card-brand { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-text); }
+.game-card-title { margin: 0; font-size: 20px; letter-spacing: -.02em; line-height: 1.25; }
+.game-card-short { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.game-card-btn {
+  margin-top: auto; align-self: flex-start; padding: 10px 18px; border-radius: var(--r-md);
+  background: var(--accent); color: var(--on-accent, #fff); font-size: 14px; font-weight: 600;
+}
+
+/* ── страница одной игры ── */
+.game-top { padding: 10px 0; }
+.game-topline { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.game-topline .brand { min-width: 0; }
+.game-topline .brand h1 { font-size: 17px; }
+.game-topline .brand span { font-size: 12px; }
+.game-back { font-size: 13px; white-space: nowrap; }
+.game-wrap { padding-top: 14px; }
+.game-frame {
+  border: 1px solid var(--line); border-radius: var(--r-lg);
+  overflow: hidden; background: var(--panel);
+}
+.game-iframe { display: block; width: 100%; height: 760px; min-height: 720px; border: 0; }
+
+.game-result {
+  margin-top: 16px; background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: 16px 18px;
+}
+.game-result-hint { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.game-result-score { margin: 0 0 12px; font-size: 16px; }
+.game-result-score b { color: var(--accent-text); font-size: 18px; }
+.game-form { display: flex; flex-direction: column; gap: 10px; }
+.game-form-label { font-size: 14px; }
+.game-form-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.game-form-row input[type="tel"] {
+  flex: 1 1 220px; min-width: 0; padding: 12px; border-radius: var(--r-md);
+  border: 1px solid var(--line); background: var(--input, #ffffff); color: var(--text); font-size: 16px;
+}
+.game-form-row input[type="tel"]:focus { outline: none; border-color: var(--accent); }
+.game-form-row button {
+  flex: 0 0 auto; padding: 12px 22px; border-radius: var(--r-md); border: none;
+  background: var(--accent); color: var(--on-accent, #fff); font-size: 15px; font-weight: 600; cursor: pointer;
+}
+.game-form-row button:disabled { opacity: .6; cursor: default; }
+.game-form-note { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.game-form-ok { margin: 0; font-size: 13px; color: #1a6b3d; }
+.game-form-error { margin: 0; font-size: 13px; color: #b02525; }
+
+.game-rules { margin-top: 6px; }
+.game-rules-list {
+  margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px;
+  font-size: 14px; line-height: 1.55; color: var(--muted); max-width: 820px;
+}
+.game-bonus-note {
+  margin: 14px 0 0; padding: 12px 14px; border-radius: var(--r-md);
+  border: 1px solid var(--line); background: var(--panel);
+  color: var(--muted); font-size: 13px; line-height: 1.5; max-width: 820px;
+}
+.game-links { display: flex; align-items: center; gap: 18px; margin-top: 22px; flex-wrap: wrap; }
+.game-order {
+  display: inline-block; padding: 12px 22px; border-radius: var(--r-md);
+  background: var(--accent); color: var(--on-accent, #fff); text-decoration: none; font-size: 15px; font-weight: 600;
+}
+.game-order:hover { filter: brightness(1.08); }
+
+/* ── тизер игр на главной ── */
+.games-teaser {
+  margin-top: 36px; padding: 22px; border-radius: var(--r-lg);
+  border: 1px solid var(--line); background: var(--panel);
+}
+.games-teaser-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.games-teaser-head h2 { margin: 0; font-size: 22px; letter-spacing: -.02em; }
+.games-teaser-all { color: var(--accent-text); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.games-teaser-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 12px; gap: 12px; margin-top: 18px; }
+.games-mini { display: flex; flex-direction: column; gap: 6px; min-width: 0; text-decoration: none; color: var(--text); }
+.games-mini-cover { display: grid; place-items: center; height: 100px; border-radius: var(--r-md); font-size: 44px; line-height: 1; }
+.games-mini:hover .games-mini-cover { filter: brightness(1.14); }
+.games-mini-title { font-size: 13px; font-weight: 600; line-height: 1.3; }
+.games-mini-brand { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.games-teaser-note { margin: 16px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+/* ── мобильная вёрстка (этап 5: 375×667) ── */
+@media (max-width: 640px) {
+  /* шапку складываем в две строки: иначе «Николаев Групп» + ссылки не влезают */
+  .topline { flex-wrap: wrap; row-gap: 6px; }
+  .brand { flex-direction: column; align-items: flex-start; gap: 0; }
+  .topnav { flex-wrap: wrap; gap: 12px; }
+  .brandswitch { flex-wrap: wrap; row-gap: 8px; }
+  .brandswitch a { white-space: nowrap; }
+
+  .games-teaser { padding: 18px 16px; margin-top: 28px; }
+  .games-teaser-head h2 { font-size: 19px; }
+  .games-teaser-grid { gap: 8px; }
+  .games-mini-cover { height: 76px; font-size: 32px; border-radius: var(--r-md); }
+  .games-mini-title { font-size: 12px; }
+
+  .game-card-cover { height: 140px; }
+  .game-card-emoji { font-size: 60px; }
+
+  .game-topline { flex-wrap: wrap; gap: 6px 12px; }
+  .game-topline .brand h1 { font-size: 16px; }
+  .game-iframe { height: calc(100dvh - 140px); min-height: 480px; }
+  .game-result { padding: 14px; }
+  .game-form-row button { flex: 1 1 100%; }
+}
+
+/* ══ этап 9: анимации интерфейса ═══════════════════════════════════════════
+   Правила игры:
+   • только CSS и Web Animations API — библиотек анимаций нет;
+   • наведение — только под @media (hover: hover): на телефоне :hover «залипает»
+     после тапа, и карточка остаётся увеличенной;
+   • prefers-reduced-motion: reduce отключает всё — отдельный блок в самом низу.
+*/
+:root { --ease-out: cubic-bezier(.22,.61,.36,1); }
+
+@keyframes ng-fade-in { from { opacity: 0 } to { opacity: 1 } }
+@keyframes ng-slide-up {
+  from { opacity: 0; transform: translateY(16px) }
+  to { opacity: 1; transform: translateY(0) }
+}
+@keyframes ng-toast-in {
+  from { opacity: 0; transform: translateY(12px) }
+  to { opacity: 1; transform: translateY(0) }
+}
+@keyframes ng-line-out {
+  0%   { opacity: 1; transform: translateX(0);     max-height: 60px; }
+  55%  { opacity: 0; transform: translateX(-40px); max-height: 60px; }
+  100% { opacity: 0; transform: translateX(-40px); max-height: 0; }
+}
+@keyframes ng-sum-bump {
+  0%   { background-color: transparent }
+  40%  { background-color: rgba(201,42,42,.12) }
+  100% { background-color: transparent }
+}
+
+/* ── карточка блюда: наведение (только мышь) ── */
+.card {
+  transition: box-shadow 220ms var(--ease-out), border-color 220ms var(--ease-out);
+}
+.card img { transition: transform 220ms cubic-bezier(.22,.61,.36,1); }
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover { box-shadow: 0 10px 26px rgba(16,24,40,.10); border-color: #d5d9df; }
+  .card:hover img { transform: scale(1.06); }
+  .card .add { opacity: .82; }
+  .card:hover .add { opacity: 1; box-shadow: 0 8px 18px rgba(201,42,42,.28); }
+  /* стоп-лист не подсвечиваем: нажимать всё равно нечего */
+  .card.stop:hover { border-color: var(--line); box-shadow: none; }
+  .card.stop:hover img { transform: none; }
+}
+
+.add {
+  transition: opacity 220ms var(--ease-out), box-shadow 220ms var(--ease-out),
+    filter 220ms var(--ease-out);
+}
+.add:active { transform: scale(.98); }
+.add--added { background: #157347; border-color: #157347; }
+
+/* ── полёт миниатюры в корзину ── */
+.fly-ghost {
+  position: fixed; z-index: 60; pointer-events: none; object-fit: cover;
+  background: linear-gradient(135deg, #c92a2a, #8f2020);
+  box-shadow: 0 10px 24px rgba(16,24,40,.22);
+  will-change: transform, opacity;
+}
+
+/* ── счётчик корзины ── */
+.cartbar-count { display: inline-block; will-change: transform; }
+
+/* ── строки корзины: удаление уезжает влево и схлопывается ── */
+.line { transition: color 180ms var(--ease-out); }
+.line--leave {
+  animation: ng-line-out 220ms var(--ease-out) forwards;
+  overflow: hidden;
+}
+
+/* ── итоговая сумма: мягкая подсветка вместо «дёрганья» цифр ── */
+.sum { transition: background-color 300ms var(--ease-out); border-radius: var(--r-md); }
+.sum--bump { animation: ng-sum-bump 300ms var(--ease-out); }
+
+/* ── корзина и модалки: fade + slide-up 180 мс ── */
+.modal { animation: ng-fade-in 180ms var(--ease-out) both; }
+.modal-body { animation: ng-slide-up 180ms var(--ease-out) both; }
+
+/* ── тосты «Добавлено: …» ── */
+.toasts {
+  position: fixed; left: 50%; transform: translateX(-50%); bottom: 92px; z-index: 45;
+  display: flex; flex-direction: column; gap: 8px; width: min(94vw, 420px);
+  pointer-events: none;
+}
+.toast-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 12px 10px 16px; border-radius: var(--r-md); font-size: 14px;
+  background: #ffffff; border: 1px solid var(--ok-line); color: var(--ok-text);
+  box-shadow: var(--shadow-2);
+  pointer-events: auto;
+  animation: ng-toast-in 180ms var(--ease-out) both;
+}
+.toast-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.toast-text b { font-weight: 600; }
+.toast-undo {
+  flex: 0 0 auto; padding: 5px 10px; border-radius: var(--r-sm); font-size: 13px;
+  background: transparent; border: 1px solid #bfe0cb; color: #2b7d4d;
+  cursor: pointer; font-family: inherit;
+}
+.toast-undo:hover { color: #1a6b3d; border-color: #7fb894; }
+
+@media (max-width: 640px) {
+  .toasts { bottom: 86px; }
+  .toast-item { font-size: 13px; }
+}
+
+/* ── reduce-motion: никаких анимаций, только мгновенные состояния ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .card:hover img { transform: none; }
+  .modal, .modal-body, .toast-item, .line--leave, .sum--bump { animation: none !important; }
+  .fly-ghost { display: none !important; }
+}
+
+/* ══ этап 9: кабинет оператора /operator ═══════════════════════════════════
+   Та же тёмная тема и те же переменные, что у сайта. Слева меню точки,
+   справа заказ и список заказов за сегодня. На телефоне — одна колонка.
+*/
+.op-wrap { padding-top: 18px; }
+
+.op { display: flex; flex-direction: column; gap: 16px; }
+.op-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.op-h1 { margin: 0 0 4px; font-size: 24px; letter-spacing: -.02em; }
+.op-sub { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; max-width: 640px; }
+
+.op-grid { display: grid; grid-template-columns: minmax(0, 1fr) 430px; grid-gap: 18px; gap: 18px; align-items: start; }
+.op-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+
+.op-toolbar { display: flex; gap: 10px; flex-wrap: wrap; }
+.op-field { display: flex; flex-direction: column; gap: 4px; flex: 1 1 180px; font-size: 12px; color: var(--muted); }
+.op-field select,
+.op-input input,
+.op-input select,
+.op-input textarea,
+.op-search input,
+.op-times input[type="time"],
+.op-link input {
+  padding: 10px 12px; border-radius: var(--r-md); border: 1px solid var(--line);
+  background: var(--input, #ffffff); color: var(--text); font-size: 15px; font-family: inherit; width: 100%;
+}
+.op-field select:focus,
+.op-input input:focus,
+.op-input select:focus,
+.op-input textarea:focus,
+.op-search input:focus,
+.op-times input[type="time"]:focus { outline: none; border-color: var(--accent); }
+
+.op-search { position: relative; display: flex; }
+.op-search input { padding-right: 38px; }
+.op-clear {
+  position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+  width: 26px; height: 26px; border-radius: var(--r-sm); border: 1px solid var(--line);
+  background: #f6f7f9; color: var(--muted); cursor: pointer; font-size: 16px; line-height: 1;
+}
+.op-clear:hover { color: var(--text); border-color: var(--accent); }
+
+.op-hint { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.op-hint kbd {
+  padding: 1px 6px; border-radius: 6px; border: 1px solid var(--line);
+  background: var(--input, #ffffff); font-family: inherit; font-size: 11px; color: var(--text);
+}
+.op-note { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.op-error { margin: 0; color: #b02525; font-size: 13px; line-height: 1.5; }
+.op-err-line { color: #b02525; font-size: 12px; line-height: 1.4; }
+
+.op-menu { display: flex; flex-direction: column; gap: 18px; }
+.op-group-title {
+  margin: 0 0 8px; font-size: 13px; font-weight: 600; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .05em;
+}
+.op-products { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); grid-gap: 10px; gap: 10px; }
+.op-product {
+  display: flex; flex-direction: column; gap: 6px; padding: 10px; text-align: left;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md);
+  color: var(--text); font-family: inherit; font-size: 13px; cursor: pointer;
+  transition: border-color 160ms var(--ease-out), transform 160ms var(--ease-out);
+}
+.op-product:hover { border-color: var(--accent); }
+.op-product:active { transform: scale(.985); }
+.op-product img { width: 100%; height: 84px; object-fit: cover; border-radius: var(--r-sm); background: #f2f3f5; }
+.op-product-name { line-height: 1.3; font-size: 13px; }
+.op-product-foot { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: auto; }
+.op-product-price { font-weight: 600; font-size: 14px; }
+.op-product-flag {
+  font-size: 11px; padding: 2px 7px; border-radius: var(--r-sm);
+  background: #fdeeee; color: #b02525; border: 1px solid #f0c9c7;
+}
+.op-product--stop { opacity: .45; cursor: not-allowed; }
+.op-product--stop:hover { border-color: var(--line); }
+
+.op-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.op-title { margin: 0; font-size: 16px; letter-spacing: -.01em; }
+
+.op-lines { display: flex; flex-direction: column; gap: 6px; max-height: 260px; overflow: auto; }
+.op-line { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.op-line-name { flex: 1 1 auto; min-width: 0; }
+.op-line-sum { color: var(--muted); white-space: nowrap; font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+.op-qty { display: flex; align-items: center; gap: 6px; }
+.op-qty button {
+  width: 24px; height: 24px; border-radius: var(--r-sm); border: 1px solid var(--line);
+  background: var(--input, #ffffff); color: var(--text); cursor: pointer; line-height: 1;
+}
+.op-qty button:hover { border-color: var(--accent); }
+.op-line-del {
+  width: 24px; height: 24px; border-radius: var(--r-sm); border: 1px solid var(--line);
+  background: transparent; color: var(--muted); cursor: pointer; line-height: 1;
+}
+.op-line-del:hover { color: #b02525; border-color: #f0c9c7; }
+
+.op-modes { display: flex; gap: 14px; font-size: 14px; flex-wrap: wrap; }
+.op-modes label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+
+.op-input { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); }
+.op-input textarea { min-height: 58px; resize: vertical; }
+.op-input--bonus input { max-width: 160px; }
+
+.op-guest {
+  display: flex; flex-direction: column; gap: 3px; padding: 10px 12px;
+  border-radius: var(--r-md); border: 1px solid #bfe0cb; background: #eaf6ee;
+  color: #1a6b3d; font-size: 13px;
+}
+.op-guest b { font-size: 14px; }
+
+.op-times { display: flex; flex-direction: column; gap: 8px; }
+.op-times input[type="time"] { max-width: 140px; }
+
+.op-totals {
+  display: flex; flex-direction: column; gap: 6px; padding: 12px;
+  border-radius: var(--r-md); border: 1px solid var(--line); background: var(--panel);
+  font-size: 14px;
+}
+.op-total-row { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); }
+.op-total-row b { color: var(--text); font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+.op-total-row--discount b { color: #157347; }
+.op-total-row--total { padding-top: 6px; border-top: 1px solid var(--line); }
+.op-total-row--total b { font-size: 16px; }
+.op-total-row--pay b { font-size: 20px; color: var(--accent-text); }
+
+.op-create {
+  padding: 13px; border-radius: var(--r-md); border: none; background: var(--accent);
+  color: var(--on-accent, #fff); font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit;
+}
+.op-create:disabled { opacity: .5; cursor: default; }
+.op-create:not(:disabled):hover { filter: brightness(1.08); }
+
+.op-ghost {
+  padding: 8px 14px; border-radius: var(--r-md); border: 1px solid var(--line);
+  background: var(--input, #ffffff); color: var(--muted); font-size: 13px; cursor: pointer; font-family: inherit;
+  white-space: nowrap;
+}
+.op-ghost:hover { color: var(--text); border-color: var(--accent); }
+.op-ghost:disabled { opacity: .55; cursor: default; }
+.op-ghost--sm { padding: 6px 10px; font-size: 12px; }
+
+.op-msg {
+  padding: 11px 14px; border-radius: var(--r-md); font-size: 13px; line-height: 1.45; border: 1px solid var(--line);
+}
+.op-msg--ok { background: #eaf6ee; border-color: #bfe0cb; color: #1a6b3d; }
+.op-msg--err { background: #fdeeee; border-color: #f0c9c7; color: #b02525; }
+.op-msg--info { background: var(--panel); border-color: var(--line); color: var(--muted); }
+
+.op-created {
+  display: flex; flex-direction: column; gap: 5px; padding: 14px 16px;
+  background: #eaf6ee; border: 1px solid #bfe0cb; border-radius: var(--r-md);
+  color: #1a6b3d; font-size: 13px; line-height: 1.45;
+}
+.op-created b { font-size: 15px; color: #0f4f2b; }
+.op-link { display: flex; gap: 8px; margin-top: 4px; }
+.op-link input { font-size: 12px; }
+.op-link button {
+  flex: 0 0 auto; padding: 8px 12px; border-radius: var(--r-md); border: 1px solid #bfe0cb;
+  background: transparent; color: #1a6b3d; font-size: 12px; cursor: pointer; font-family: inherit;
+  white-space: nowrap;
+}
+.op-link button:hover { background: #d8eee1; }
+
+.op-card--orders { gap: 10px; }
+.op-orders-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.op-orders { display: flex; flex-direction: column; gap: 8px; max-height: 440px; overflow: auto; }
+.op-order {
+  display: flex; flex-direction: column; gap: 5px; padding: 10px 12px;
+  border-radius: var(--r-md); border: 1px solid var(--line); background: var(--panel); font-size: 13px;
+}
+.op-order-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.op-order-time { color: var(--muted); font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+.op-order-num { font-size: 13px; }
+.op-order-sum { margin-left: auto; font-weight: 600; font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+.op-order-info { display: flex; gap: 10px; flex-wrap: wrap; color: var(--muted); font-size: 12px; }
+.op-order-addr { color: var(--muted); font-size: 12px; }
+.op-tag {
+  padding: 2px 8px; border-radius: var(--r-sm); border: 1px solid var(--line);
+  font-size: 11px; color: var(--muted); white-space: nowrap;
+}
+.op-tag--courier { border-color: #ead9a8; background: #fdf6e6; color: #7a5a10; }
+.op-tag--ok { border-color: #bfe0cb; background: #eaf6ee; color: #2b7d4d; }
+.op-tag--cancel { border-color: #f0c9c7; background: #fdeeee; color: #b02525; }
+.op-tag--op { border-color: rgba(201,42,42,.32); background: rgba(201,42,42,.10); color: #b02525; }
+.op-order-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
+.op-order-actions button {
+  padding: 6px 10px; border-radius: var(--r-sm); border: 1px solid var(--line);
+  background: transparent; color: var(--muted); font-size: 12px; cursor: pointer; font-family: inherit;
+}
+.op-order-actions button:hover:not(:disabled) { color: var(--text); border-color: var(--accent); }
+.op-order-actions button:disabled { opacity: .45; cursor: default; }
+
+.op-login {
+  max-width: 420px; margin: 28px auto 0; display: flex; flex-direction: column; gap: 14px;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 22px;
+}
+.op-login-form { display: flex; flex-direction: column; gap: 10px; }
+
+@media (max-width: 900px) {
+  .op-grid { grid-template-columns: minmax(0, 1fr); }
+  .op-products { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  .op-orders { max-height: none; }
+}
+@media (max-width: 640px) {
+  .op-h1 { font-size: 20px; }
+  .op-card { padding: 14px; }
+  .op-line { font-size: 12px; }
+  .op-product img { height: 70px; }
+}
+
+/* ══ этап 10: темы брендов ═══════════════════════════════════════════════════
+   Токены темы (--bg, --bg-to, --accent, --accent-text, --on-accent, --accent-soft,
+   --text, --muted, --line, --card, --input) ставит lib/brands.ts → brandCssVars()
+   как inline style на контейнере страницы. Ниже — только правила, которые их читают.
+   Всё завязано на .brand-shell, поэтому нейтральные страницы (главная, доставка,
+   игры, кабинет, оператор) выглядят ровно как до этапа 10.
+
+   Про контраст: --accent — заливка (на ней текст --on-accent), --accent-text —
+   тот же акцент, но высветленный/затемнённый под текст на тёмном фоне. Цифры
+   в README, раздел «Темы брендов»; пересчёт — node scripts/contrast.mjs. */
+
+main.brand-shell {
+  min-height: 100vh;
+  /* этап 15: фон страницы бренда — чистый белый (bg = bgTo = #ffffff).
+     Брендовость держат не подложки, а акценты: кнопки, цены, активная
+     категория, полоска под обложкой. */
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* шапка бренда: белая, как и страница — шва не видно */
+.brand-shell header.top {
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+/* этап 15: акцентная полоска под обложкой — бренд виден и на белом */
+.brand-shell header.brandhero {
+  border-bottom: 3px solid var(--accent);
+}
+
+/* категории: активная — акцентная заливка, наведение — мягкая подложка */
+.brand-shell .cats a {
+  background: var(--accent-soft);
+  border-color: var(--line);
+  color: var(--text);
+}
+.brand-shell .cats a:hover {
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+.brand-shell .cats a.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+.brand-shell .cats a:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+
+/* карточка блюда: белая с рамкой и мягкой тенью, при наведении — акцентная рамка */
+.brand-shell .card {
+  background: var(--card);
+  border-color: var(--line);
+  box-shadow: var(--shadow-1);
+}
+.brand-shell .card .price {
+  color: var(--accent-text);
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+.brand-shell .card .meta,
+.brand-shell .card .name {
+  color: var(--text);
+}
+.brand-shell .card .meta {
+  color: var(--muted);
+}
+.brand-shell .badge {
+  background: var(--accent-soft);
+  border-color: var(--line);
+  color: var(--accent-text);
+}
+.brand-shell .error {
+  background: var(--accent-soft);
+  border-color: var(--line);
+}
+.brand-shell .note {
+  color: var(--muted);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .brand-shell .card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 10px 26px rgba(16,24,40,.12);
+  }
+  /* стоп-лист не подсвечиваем: нажимать всё равно нечего */
+  .brand-shell .card.stop:hover {
+    border-color: var(--line);
+    box-shadow: none;
+  }
+}
+
+/* корзина и модалки: панель и поля — в тон бренда, кнопки — в его акцент */
+.brand-shell .cartbar {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.brand-shell .add,
+.brand-shell .send {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+}
+.brand-shell .modal-body {
+  background: var(--card);
+  border-color: var(--line);
+}
+.brand-shell .venueswitch a.active,
+.brand-shell .brandswitch a:hover {
+  color: var(--accent-text);
+}
+.brand-shell .venueswitch a.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+
+/* клавиатурный фокус — акцентом бренда (мышью ринг не показываем) */
+.brand-shell :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.brand-shell .cats a:focus-visible {
+  outline-color: var(--accent-text);
+}
+
+/* ── стоп-лист: раньше карточка целиком уходила в opacity:.45 и текст сливался.
+   Теперь гасим только фото, а название и цену оставляем читаемыми. ── */
+.card.stop { opacity: 1; }
+.card.stop img {
+  filter: grayscale(1) brightness(.75);
+  opacity: .55;
+}
+.card.stop .name { color: var(--muted); }
+.card.stop .price {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.card.stop .meta { opacity: .85; }
+
+/* ── карточки брендов на главной: свой градиент, свой акцент, своя кнопка ── */
+.brandcard-cover { background-color: var(--bg, #ffffff); }
+.brandcard-body { display: flex; flex-direction: column; flex: 1 1; }
+.brandcard-go {
+  display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;
+  margin-top: auto; padding: 9px 16px; border-radius: var(--r-md);
+  background: var(--accent, #c92a2a); color: var(--on-accent, #fff);
+  font-weight: 600; font-size: 14px;
+  transition: filter .15s ease;
+}
+.brandcard:hover .brandcard-go { filter: brightness(1.08); }
+.brandcard:hover { border-color: var(--accent, #e6e8ec); }
+.brandcard:focus-visible { outline: 2px solid var(--accent, #c92a2a); outline-offset: 3px; }
+
+/* ── карточки игр: рамка и кнопка в цвет заведения ── */
+.game-card:hover { border-color: var(--accent, #e6e8ec); }
+.game-card-brand { color: var(--accent-text, var(--accent)); }
+.game-card-btn { background: var(--accent); color: var(--on-accent, #fff); }
+
+/* кнопка «В корзину» на странице бренда — плотная заливка: полупрозрачность
+   (.card .add { opacity:.82 }) съедала контраст текста на акценте */
+.brand-shell .card .add {
+  opacity: 1;
+}
+
+/* ── настоящие логотипы (этап 10, дополнение) ───────────────────────────────
+   Высота 28–40 px и max-width 160 px: так логотип не ломает ни обложку,
+   ни карточку на 390 px. object-fit: contain — пропорции не искажаются:
+   словесный знак Gorky 1,95:1, знак Susi ~1:1. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* логотип и название — одна группа слева, подпись справа (на телефоне — ниже) */
+.brandhero-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.brandhero--logo .brandhero-inner {
+  align-items: center;
+  gap: 18px;
+}
+.brandhero--logo .brandhero-head h1 { margin: 0; }
+.brandhero-logo {
+  height: 40px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  /* логотипы в public/brand — белые. На светлой обложке нужна тёмная
+     подложка (как у карточки бренда на главной), иначе знак исчезает. */
+  padding: 7px 11px;
+  border-radius: var(--r-sm);
+  background: rgba(0, 0, 0, .34);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+}
+
+.brandcard-logo {
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  height: 32px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  /* подложка: под белым логотипом может оказаться светлый участок фото */
+  padding: 6px 10px;
+  border-radius: var(--r-sm);
+  background: rgba(0, 0, 0, .42);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+}
+
+@media (max-width: 640px) {
+  .brandhero--logo .brandhero-inner { align-items: flex-start; gap: 8px; }
+  .brandhero-head { gap: 10px; }
+  .brandhero-logo { height: 32px; max-width: 130px; }
+  .brandcard-logo { height: 28px; max-width: 120px; left: 10px; top: 10px; }
+}
+
+/* ══ этап 11: фото блюда и заглушка ═════════════════════════════════════════
+   Компонент MenuImage отдаёт либо <img class="menuimg--photo">, либо заглушку
+   (обёртка .menuimg--ph с картинкой и подписью снизу). Рамка у обоих вариантов
+   одна и та же — 150px в карточке, — чтобы вёрстка не прыгала от наличия фото.
+*/
+.menuimg { display: block; position: relative; width: 100%; }
+.card .menuimg { height: 150px; overflow: hidden; background: #f2f3f5; }
+
+/* картинка заглушки занимает всю рамку; object-fit: cover — как у фото */
+.card .menuimg .menuimg-art { width: 100%; height: 100%; object-fit: cover; }
+
+.menuimg-note {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 16px 10px 7px;
+  font-size: 11.5px; line-height: 1.25; letter-spacing: .01em;
+  text-align: center; color: #f4ede7;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .74) 58%);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .65);
+  /* длинная подпись переносится, а не обрезается: текст должен читаться целиком */
+  overflow-wrap: break-word;
+}
+
+/* Заглушка статичная: hover-увеличение этапа 9 относится только к фото.
+   Селекторы сильнее, чем `.card:hover img` — иначе картинка поедет под подписью. */
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .menuimg--ph,
+  .card:hover .menuimg--ph .menuimg-art { transform: none; }
+}
+
+@media (max-width: 640px) {
+  .menuimg-note { font-size: 11px; padding: 14px 8px 6px; }
+}
+
+/* ══ этап 12: юридические документы, футер, баннер cookies ═══════════════════
+   Документы читаются как текст, а не как «страница сайта»: колонка 760px,
+   16px и межстрочный 1.6 на любом экране — на телефоне мельче не делаем.
+*/
+.legal-wrap { max-width: 792px; } /* 760px текста + паддинги .wrap */
+
+.legal { max-width: 760px; margin: 0 auto; }
+
+.legal-back {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin: 18px 0 6px; padding: 7px 12px;
+  border-radius: var(--r-md); border: 1px solid var(--line);
+  background: var(--card); color: var(--muted);
+  font-size: 13px; font-family: inherit; cursor: pointer;
+}
+.legal-back:hover { color: var(--text); border-color: var(--accent); }
+
+.legal-kicker {
+  margin: 16px 0 0; font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent-text);
+}
+.legal-title {
+  font-size: 30px; line-height: 1.2; letter-spacing: -.02em;
+  margin: 14px 0 6px; text-wrap: balance;
+}
+.legal-kicker + .legal-title { margin-top: 4px; }
+.legal-meta { color: var(--muted); font-size: 14px; margin: 0 0 22px; }
+
+/* содержание: список разделов документа со ссылками-якорями */
+.legal-toc {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: 14px 18px 16px; margin: 0 0 26px;
+}
+.legal-toc-title {
+  display: block; font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 8px;
+}
+.legal-toc ol {
+  margin: 0; padding-left: 20px;
+  display: flex; flex-direction: column; gap: 6px;
+  font-size: 15px; line-height: 1.45;
+}
+.legal-toc a { color: var(--text); text-decoration: none; }
+.legal-toc a:hover { color: var(--accent-text); text-decoration: underline; }
+
+/* сам текст документа */
+.legal-p,
+.legal-ul li {
+  font-size: 16px; line-height: 1.6; margin: 0 0 14px;
+  /* длинные URL из документов не должны растягивать страницу на телефоне */
+  overflow-wrap: break-word;
+}
+.legal-p { color: #24272e; }
+.legal-ul { margin: 0 0 16px; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+.legal-ul li { margin: 0; }
+.legal-h2 {
+  font-size: 21px; line-height: 1.3; letter-spacing: -.01em;
+  margin: 32px 0 12px; scroll-margin-top: 78px;
+}
+.legal-h3 { font-size: 18px; line-height: 1.35; margin: 22px 0 10px; scroll-margin-top: 78px; }
+.legal a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 2px; }
+.legal a:hover { color: var(--text); }
+
+@media (max-width: 640px) {
+  .legal-title { font-size: 24px; }
+  .legal-h2 { font-size: 19px; margin-top: 26px; }
+  .legal-h3 { font-size: 17px; }
+  .legal-toc { padding: 12px 14px 14px; }
+  /* 16px и 1.6 остаются: на телефоне текст не мельчает */
+}
+
+/* ── футер: юрдоки, копирайт, пометка про cookies ─────────────────────────── */
+.sitefooter {
+  max-width: 760px; margin: 44px auto 0; padding-top: 18px;
+  border-top: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 6px;
+  color: var(--muted); font-size: 13px; line-height: 1.6;
+}
+.sitefooter-docs { display: flex; flex-wrap: wrap; align-items: baseline; }
+.sitefooter-docs a { color: var(--muted); text-decoration: none; }
+.sitefooter-docs a:hover { color: var(--text); text-decoration: underline; }
+.sitefooter-sep { color: var(--line); }
+.sitefooter-copy { margin: 0; }
+.sitefooter-note { margin: 0; color: #6b7280; }
+
+/* ── баннер cookies: плашка, не модалка ────────────────────────────────────
+   z-index ниже .cartbar (20) и .modal (30): кнопка «Оформить заказ» всегда
+   остаётся сверху и нажимается. Там, где браузер умеет :has(), плашка ещё и
+   поднимается над панелью корзины, чтобы её текст не оказался под кнопкой.
+*/
+.cookiebanner {
+  position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 15;
+  width: auto; max-width: 560px; margin: 0 auto;
+  padding: 14px 16px; border-radius: var(--r-lg);
+  background: var(--card); border: 1px solid var(--line);
+  box-shadow: var(--shadow-3);
+  font-size: 13px; line-height: 1.5; color: var(--text);
+}
+.cookiebanner-text { margin: 0; color: #24272e; }
+.cookiebanner-links { margin: 6px 0 10px; font-size: 12.5px; }
+.cookiebanner-links a,
+.cookiebanner-text a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 2px; }
+.cookiebanner-sep { color: var(--line); }
+.cookiebanner-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.cookiebanner-btn {
+  padding: 8px 14px; border-radius: var(--r-md); font-size: 13px; font-weight: 600;
+  font-family: inherit; cursor: pointer;
+  border: 1px solid var(--line); background: var(--input); color: var(--text);
+}
+.cookiebanner-btn:hover { border-color: var(--accent); }
+.cookiebanner-btn--primary {
+  background: var(--accent); border-color: var(--accent); color: var(--on-accent, #fff);
+}
+.cookiebanner-btn--primary:hover { filter: brightness(1.08); }
+
+@media (max-width: 640px) {
+  /* на телефоне плашка на всю ширину экрана, но не липнет к самым краям */
+  .cookiebanner { left: 10px; right: 10px; bottom: 10px; padding: 12px 14px; }
+  .cookiebanner-actions { gap: 6px; }
+  .cookiebanner-btn { flex: 1 1 auto; text-align: center; }
+}
+
+/* плашка не перекрывает панель «Оформить» на телефоне: поднимаем её над ней */
+@supports selector(body:has(*)) {
+  body:has(.cartbar) .cookiebanner { bottom: 84px; }
+  @media (max-width: 640px) {
+    body:has(.cartbar) .cookiebanner { bottom: 78px; }
+  }
+}
+
+/* ── согласие с офертой в корзине ─────────────────────────────────────────── */
+.consent {
+  display: flex; gap: 9px; align-items: flex-start;
+  font-size: 13px; line-height: 1.45; color: var(--muted);
+  margin: 4px 0 0;
+}
+.consent input {
+  flex: 0 0 auto; width: 17px; height: 17px; margin: 1px 0 0;
+  accent-color: var(--accent); cursor: pointer;
+}
+.consent a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 2px; }
+.consent-hint { margin: 6px 0 0; font-size: 12.5px; color: #5b616b; }
+
+/* ══ этап 15: восстановленные стили карточки блюда (этап 14) ═════════════════
+   У компонента components/DishCard.tsx разметка есть, а CSS не было ни в одном
+   файле (проверено по бэкапам этапов 12–14) — модалка открывалась пустой, а
+   кнопка-оверлей «Открыть карточку» имела высоту 6 px. Ниже — минимальный набор
+   правил под существующую разметку: светлая тема, те же токены и шкала радиусов.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* кнопка-оверлей на всю карточку: клик по фото/названию открывает модалку */
+.card--openable { position: relative; cursor: pointer; }
+.card-open {
+  position: absolute; inset: 0; z-index: 1;
+  width: 100%; height: 100%; padding: 0; margin: 0;
+  border: 0; border-radius: var(--r-lg); background: transparent; cursor: pointer;
+  font: inherit; color: inherit;
+}
+.card-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* «В корзину» лежит выше оверлея и работает как раньше */
+.card--openable .add { position: relative; z-index: 2; }
+
+.dishcard {
+  position: fixed; inset: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: center; padding: 16px;
+  background: rgba(17,20,26,.45);
+  overflow-y: auto; overscroll-behavior: contain;
+  animation: ng-fade-in 180ms var(--ease-out) both;
+}
+.dishcard-panel {
+  position: relative; margin: auto;
+  width: 100%; max-width: 560px;
+  background: var(--card); color: var(--text);
+  border: 1px solid var(--line); border-radius: var(--r-lg);
+  box-shadow: var(--shadow-3);
+  overflow: hidden;
+  animation: ng-slide-up 180ms var(--ease-out) both;
+}
+
+/* крестик: слева сверху над фото, чтобы не спорить с ценой */
+.dishcard-close {
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  width: 34px; height: 34px; display: grid; place-items: center;
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  background: rgba(255,255,255,.94); color: var(--text);
+  font-size: 20px; line-height: 1; cursor: pointer;
+  box-shadow: var(--shadow-1);
+}
+.dishcard-close:hover { border-color: var(--accent); color: var(--accent-text); }
+
+.dishcard-media { background: var(--panel); }
+.dishcard-media .menuimg { height: 220px; overflow: hidden; }
+.dishcard-media .menuimg img,
+.dishcard-media .menuimg-art { width: 100%; height: 100%; object-fit: cover; }
+
+.dishcard-body {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 18px 18px 20px;
+}
+
+.dishcard-kicker {
+  margin: 0; font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--accent-text);
+}
+.dishcard-name { margin: 0; font-size: 22px; line-height: 1.25; letter-spacing: -.02em; }
+.dishcard-meta { margin: 0; font-size: 13px; color: var(--muted); }
+.dishcard-price {
+  margin: 2px 0 0; font-size: 20px; font-weight: 700;
+  color: var(--accent-text); font-feature-settings: "tnum"; font-variant-numeric: tabular-nums;
+}
+.dishcard-stop {
+  margin: 4px 0 0; padding: 7px 10px; border-radius: var(--r-sm);
+  background: var(--bad-bg); border: 1px solid var(--bad-line); color: var(--bad-text);
+  font-size: 13px;
+}
+.dishcard-text { margin: 0; font-size: 14px; line-height: 1.55; color: var(--text); }
+.dishcard-allergens { color: var(--muted); }
+.dishcard-pending {
+  margin: 0; padding: 10px 12px; border-radius: var(--r-sm);
+  border: 1px dashed var(--line); background: var(--panel);
+  font-size: 13px; line-height: 1.5; color: var(--muted);
+}
+
+.dishcard-section { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+.dishcard-h {
+  margin: 0; font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--muted); font-weight: 600;
+}
+
+/* плашки КБЖУ: четыре равные, каждая — светлая панель */
+.dishcard-kbju {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-gap: 8px; gap: 8px; margin: 0;
+}
+.dishcard-kbju-item {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 9px 10px; border-radius: var(--r-sm);
+  border: 1px solid var(--line); background: var(--panel);
+}
+.dishcard-kbju-label { font-size: 11px; color: var(--muted); }
+.dishcard-kbju-value {
+  margin: 0; font-size: 15px; font-weight: 600; font-feature-settings: "tnum"; font-variant-numeric: tabular-nums;
+}
+
+.dishcard-buy {
+  display: flex; align-items: center; gap: 10px; margin-top: 8px;
+}
+.dishcard-qty {
+  display: flex; align-items: center; gap: 2px;
+  border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel);
+  padding: 3px;
+}
+.dishcard-qty-btn {
+  width: 32px; height: 32px; display: grid; place-items: center;
+  border: 1px solid transparent; border-radius: var(--r-sm);
+  background: #ffffff; color: var(--text); font-size: 18px; line-height: 1; cursor: pointer;
+}
+.dishcard-qty-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent-text); }
+.dishcard-qty-btn:disabled { opacity: .45; cursor: default; }
+.dishcard-qty-value {
+  min-width: 26px; text-align: center; font-size: 15px; font-weight: 600;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+.dishcard-add {
+  flex: 1 1 auto; min-height: 44px; padding: 11px 16px;
+  border: 1px solid var(--accent); border-radius: var(--r-md);
+  background: var(--accent); color: var(--on-accent);
+  font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer;
+}
+.dishcard-add:hover:not(:disabled) { filter: brightness(1.06); }
+.dishcard-add:disabled { opacity: .55; cursor: default; }
+.dishcard-add--added { background: #157347; border-color: #157347; }
+
+@media (max-width: 640px) {
+  .dishcard { padding: 10px; }
+  .dishcard-media .menuimg { height: 180px; }
+  .dishcard-body { padding: 14px 14px 16px; }
+  .dishcard-name { font-size: 19px; }
+  .dishcard-kbju { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dishcard-buy { flex-wrap: wrap; }
+  .dishcard-add { flex: 1 1 100%; }
+}
+
+/* кнопки масштаба карты (Leaflet) приходят со своими радиусами 2–4 px и ломают
+   единую шкалу — выравниваем на --r-sm, внутренние кнопки скругляет контейнер */
+.leaflet-touch .leaflet-bar,
+.leaflet-bar { border-radius: var(--r-sm) !important; overflow: hidden; }
+.leaflet-touch .leaflet-bar a,
+.leaflet-bar a { border-radius: 0 !important; }
+
+</style><meta name="theme-color" content="#ffffff"/><meta name="color-scheme" content="light"/><title>Susi Izakaya — меню и доставка — Николаев Групп</title><meta name="description" content="Susi Izakaya: Японская кухня и суши-бар. Меню из iiko, доставка по Ижевску и самовывоз. ул. Максима Горького, 72."/><meta name="application-name" content="Николаев Групп"/><meta name="keywords" content="доставка еды Ижевск,Pasta,Gorky,Susi Izakaya,Николаев Групп,меню"/><meta name="robots" content="index, follow"/><meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1"/><link rel="canonical" href="https://ngfood.ru/b/susi"/><meta name="format-detection" content="telephone=no"/><meta property="og:title" content="Susi Izakaya — меню и доставка"/><meta property="og:description" content="Susi Izakaya: Японская кухня и суши-бар. Меню из iiko, доставка по Ижевску и самовывоз. ул. Максима Горького, 72."/><meta property="og:url" content="https://ngfood.ru/b/susi"/><meta property="og:image" content="https://ngfood.ru/covers/susi-hero.jpg"/><meta property="og:image:width" content="1920"/><meta property="og:image:height" content="700"/><meta property="og:image:alt" content="Susi Izakaya — обложка"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Николаев Групп — доставка"/><meta name="twitter:description" content="Pasta, Gorky и Susi Izakaya — меню и доставка по Ижевску"/><meta name="twitter:image" content="https://ngfood.ru/covers/pasta-hero.jpg"/><link rel="icon" href="icon.svg?ff91aa87a7dd2e8e" type="image/svg+xml" sizes="any"/></head><body><main class="brand-shell" style="--bg:#ffffff;--bg-to:#ffffff;--accent:#0e6b5e;--accent-text:#0b5b50;--on-accent:#ffffff;--accent-soft:#e8f5f2;--text:#14161a;--muted:#5b616b;--line:#e6e8ec;--card:#ffffff;--panel:#f6f7f9;--input:#ffffff"><header class="brandhero brandhero--logo" style="background-image:linear-gradient(180deg, rgba(14,107,94,.20) 0%, rgba(255,255,255,.62) 46%, #ffffff 100%), url(/covers/susi-hero.jpg);background-color:#ffffff"><div class="wrap brandhero-inner"><div class="brandhero-head"><img class="brandhero-logo" src="brand/susi-white.png" alt="Susi Izakaya" width="160" height="40"/><h1>Susi Izakaya</h1></div><span>Японская кухня и суши-бар<!-- --> · <!-- -->Горького, 72 · ул. Максима Горького, 72</span></div></header><header class="top"><div class="wrap"><div class="topline-actions"><nav class="brandswitch"><a href="index.html">все заведения</a><a href="pasta.html">Pasta</a><a href="gorky.html">Gorky</a><a href="delivery.html">доставка</a><a href="games.html">игры</a></nav></div><nav class="cats" aria-label="Категории меню"><a href="#cat-рамен" class="active" aria-current="true">РАМЕН</a><a href="#cat-напитки">НАПИТКИ</a><a href="#cat-susi-стритфуд">SUSI СТРИТФУД</a><a href="#cat-сеты">СЕТЫ</a><a href="#cat-комбо">КОМБО</a><a href="#cat-маки">МАКИ</a><a href="#cat-ролл-классика">РОЛЛ КЛАССИКА</a><a href="#cat-ролл-темпура">РОЛЛ ТЕМПУРА</a><a href="#cat-премиум-ролл">ПРЕМИУМ РОЛЛ</a><a href="#cat-онигири">ОНИГИРИ</a><a href="#cat-закуски">ЗАКУСКИ</a><a href="#cat-горячие-блюда">ГОРЯЧИЕ БЛЮДА</a><a href="#cat-салаты">САЛАТЫ</a></nav></div></header><div class="wrap"><section id="cat-рамен"><h2 class="section">РАМЕН</h2><div class="grid"><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Шио с говядиной"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/e93665808714398503396a593790023f.JPEG" alt="Шио с говядиной" loading="lazy" decoding="async"/><div class="body"><div class="name">Шио с говядиной</div><div class="meta">640 г</div><div class="price">750 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Том ям рамен"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/18ef7fe0a668b1656d760ab1d4745b84.JPEG" alt="Том ям рамен" loading="lazy" decoding="async"/><div class="body"><div class="name">Том ям рамен</div><div class="meta">680 г</div><div class="price">750 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Бонито с креветками"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/7c392de776c74c2318ef39d2828c0a46.JPEG" alt="Бонито с креветками" loading="lazy" decoding="async"/><div class="body"><div class="name">Бонито с креветками</div><div class="meta">660 г</div><div class="price">650 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Кокосовый карри с цыпленком"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/b7ab8acc5cc1b647365323e49f680caa.JPEG" alt="Кокосовый карри с цыпленком" loading="lazy" decoding="async"/><div class="body"><div class="name">Кокосовый карри с цыпленком</div><div class="meta">660 г</div><div class="price">650 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Кимчи с хрустящим цыпленком"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/5abf75027b723f5fd606a3b1bb59cd5b.JPEG" alt="Кимчи с хрустящим цыпленком" loading="lazy" decoding="async"/><div class="body"><div class="name">Кимчи с хрустящим цыпленком</div><div class="meta">670 г</div><div class="price">650 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Чизи с говядиной"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/36ef8af74778d9451cf790be6c62a0c6.JPEG" alt="Чизи с говядиной" loading="lazy" decoding="async"/><div class="body"><div class="name">Чизи с говядиной</div><div class="meta">650 г</div><div class="price">790 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Падтай с говядиной"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/abf9f96565d17fdc0a737d919ae2b1a9.JPEG" alt="Падтай с говядиной" loading="lazy" decoding="async"/><div class="body"><div class="name">Падтай с говядиной</div><div class="meta">640 г</div><div class="price">не число ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Двойной мисо с тасю из свинины"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/41fa1ce0689199adcf2fba06345269db.JPEG" alt="Двойной мисо с тасю из свинины" loading="lazy" decoding="async"/><div class="body"><div class="name">Двойной мисо с тасю из свинины</div><div class="meta">660 г</div><div class="price">650 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article></div></section><section id="cat-напитки"><h2 class="section">НАПИТКИ</h2><div class="grid"><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Момо-Улун"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/b616ef4d194c3363e7b53b02762bc0ba.JPEG" alt="Момо-Улун" loading="lazy" decoding="async"/><div class="body"><div class="name">Момо-Улун</div><div class="meta"></div><div class="price">330 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Синаноки"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/44de61c1f21a95c1aa8541f2893a3cde.JPEG" alt="Синаноки " loading="lazy" decoding="async"/><div class="body"><div class="name">Синаноки </div><div class="meta"></div><div class="price">330 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Итиго Маргарита"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/6a509bb2d18a1cd04090f2ba44f68b53.JPEG" alt="Итиго Маргарита " loading="lazy" decoding="async"/><div class="body"><div class="name">Итиго Маргарита </div><div class="meta"></div><div class="price">330 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Сакура Спритц"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/8ee8c68c5002db0be29650afa8fce239.JPEG" alt="Сакура Спритц" loading="lazy" decoding="async"/><div class="body"><div class="name">Сакура Спритц</div><div class="meta"></div><div class="price">330 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Рисурингу Умэ"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/655009375d100d164162c0fea29822e7.JPEG" alt="Рисурингу Умэ" loading="lazy" decoding="async"/><div class="body"><div class="name">Рисурингу Умэ</div><div class="meta"></div><div class="price">300 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Порн Стар"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/c96d2554d4ebff3e73c573c2ed6e5711.JPEG" alt="Порн Стар " loading="lazy" decoding="async"/><div class="body"><div class="name">Порн Стар </div><div class="meta">100 г</div><div class="price">330 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Аперитиво Спритц"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/487de62057ff64b4fe7cb8151e27514a.JPEG" alt="Аперитиво Спритц " loading="lazy" decoding="async"/><div class="body"><div class="name">Аперитиво Спритц </div><div class="meta">60 г</div><div class="price">330 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Мажитель"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/ddf53f4077c6fa35077127f54e2e0183.JPEG" alt="Мажитель" loading="lazy" decoding="async"/><div class="body"><div class="name">Мажитель</div><div class="meta">200 г</div><div class="price">330 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Иланг Спритц"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/8ca734531803249c6516e8d90a541df8.JPEG" alt="Иланг Спритц " loading="lazy" decoding="async"/><div class="body"><div class="name">Иланг Спритц </div><div class="meta"></div><div class="price">330 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article></div></section><section id="cat-susi-стритфуд"><h2 class="section">SUSI СТРИТФУД</h2><div class="grid"><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Кацу сандо с курицей"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/4cc087ac8ad3ae27e8477dfa2c2c2b6d.JPEG" alt="Кацу сандо с курицей" loading="lazy" decoding="async"/><div class="body"><div class="name">Кацу сандо с курицей</div><div class="meta">250 г</div><div class="price">420 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Susi макаронс с тунцом"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/25ff56abf439260751ce628fe58cb070.JPEG" alt="Susi макаронс с тунцом" loading="lazy" decoding="async"/><div class="body"><div class="name">Susi макаронс с тунцом</div><div class="meta">150 г</div><div class="price">390 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Susi макаронс с лососем"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/17d0d8b424734ea3e94d378040a540f5.JPEG" alt="Susi макаронс с лососем" loading="lazy" decoding="async"/><div class="body"><div class="name">Susi макаронс с лососем</div><div class="meta">150 г</div><div class="price">490 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Кацу сандо с креветками"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/2b8b9171ac9599c6a062d27d3cfe40b4.JPEG" alt="Кацу сандо с креветками" loading="lazy" decoding="async"/><div class="body"><div class="name">Кацу сандо с креветками</div><div class="meta">250 г</div><div class="price">520 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Susi макаронс с креветкой"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/c4605e07335979276eda9441a256d7c8.JPEG" alt="Susi макаронс с креветкой" loading="lazy" decoding="async"/><div class="body"><div class="name">Susi макаронс с креветкой</div><div class="meta">150 г</div><div class="price">390 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Susi дог с лососем"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/e3b7e0e951c5cd18db77697f57a41352.JPEG" alt="Susi дог с лососем" loading="lazy" decoding="async"/><div class="body"><div class="name">Susi дог с лососем</div><div class="meta">280 г</div><div class="price">750 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Susi дог с креветками"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/ed5e69cdc5449c8b60912fddaf17ee97.JPEG" alt="Susi дог с креветками" loading="lazy" decoding="async"/><div class="body"><div class="name">Susi дог с креветками</div><div class="meta">270 г</div><div class="price">720 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Сет Susi макаронс"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/1b57b7ca037a028c836ed916221340a9.JPEG" alt="Сет Susi макаронс" loading="lazy" decoding="async"/><div class="body"><div class="name">Сет Susi макаронс</div><div class="meta">450 г</div><div class="price">1 050 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article></div></section><section id="cat-сеты"><h2 class="section">СЕТЫ</h2><div class="grid"><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Сет Susi Роллов 3"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/62d48809e29f67fb8c52c74d358aef60.JPEG" alt="Сет Susi Роллов 3" loading="lazy" decoding="async"/><div class="body"><div class="name">Сет Susi Роллов 3</div><div class="meta">1406 г</div><div class="price">2 690 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Сет Закусок"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/7c6c4d918dc2468f3814fc700bd64c2e.JPEG" alt="Сет Закусок" loading="lazy" decoding="async"/><div class="body"><div class="name">Сет Закусок</div><div class="meta">632 г</div><div class="price">1 260 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Сет Тунец"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/c5d929bf7b2be00bab158875df986bbc.JPEG" alt="Сет Тунец" loading="lazy" decoding="async"/><div class="body"><div class="name">Сет Тунец</div><div class="meta">1168 г</div><div class="price">2 350 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Сет Темпура"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/459841e3d5097edacf87b12549f528f8.JPEG" alt="Сет Темпура" loading="lazy" decoding="async"/><div class="body"><div class="name">Сет Темпура</div><div class="meta">1506 г</div><div class="price">2 900 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Сет Susi Роллов 2"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/106ea4d9d181b11959158df604a80137.JPEG" alt="Сет Susi Роллов 2" loading="lazy" decoding="async"/><div class="body"><div class="name">Сет Susi Роллов 2</div><div class="meta">802 г</div><div class="price">1 750 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Сет Лосось"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/d31b2e35b83520a823a31973775705f8.JPEG" alt="Сет Лосось" loading="lazy" decoding="async"/><div class="body"><div class="name">Сет Лосось</div><div class="meta">1216 г</div><div class="price">3 290 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Сет Susi Роллов 1"></button><span class="menuimg menuimg--ph"><img class="menuimg-art" src="/placeholders/susi.svg" alt="Фото блюда Сет Susi Роллов 1 скоро появится" loading="lazy" decoding="async"/><span class="menuimg-note" aria-hidden="true">Тут был рамен. Съели</span></span><div class="body"><div class="name">Сет Susi Роллов 1</div><div class="meta">1008 г</div><div class="price">2 850 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article></div></section><section id="cat-комбо"><h2 class="section">КОМБО</h2><div class="grid"><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Комбо Эгоист"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/315668669e3daf0aa074518ff9801b95.JPEG" alt="Комбо Эгоист" loading="lazy" decoding="async"/><div class="body"><div class="name">Комбо Эгоист</div><div class="meta">1001 г</div><div class="price">1 180 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Комбо На двоих"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/f0fa49fd856af66a7a4881c6968142ac.JPEG" alt="Комбо На двоих" loading="lazy" decoding="async"/><div class="body"><div class="name">Комбо На двоих</div><div class="meta">1401 г</div><div class="price">2 490 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Комбо Онигири с курицей + Бабл Ти"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/fc9d38f0a8c706b59996f0575e63cfc0.JPEG" alt="Комбо Онигири с курицей + Бабл Ти" loading="lazy" decoding="async"/><div class="body"><div class="name">Комбо Онигири с курицей + Бабл Ти</div><div class="meta">241 г</div><div class="price">690 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Комбо Онигири с креветкой + Бабл Ти"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/2c69bd831e63f0df910c1766e8def07b.JPEG" alt="Комбо Онигири с креветкой + Бабл Ти" loading="lazy" decoding="async"/><div class="body"><div class="name">Комбо Онигири с креветкой + Бабл Ти</div><div class="meta">241 г</div><div class="price">890 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article></div></section><section id="cat-маки"><h2 class="section">МАКИ</h2><div class="grid"><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Маки с лососем"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/d36fc6603535f655c6473eb2c1a6a958.JPEG" alt="Маки с лососем" loading="lazy" decoding="async"/><div class="body"><div class="name">Маки с лососем</div><div class="meta">160 г</div><div class="price">490 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Маки с огурцом"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/a6ef229ced6725f11a945aa37e7882c9.JPEG" alt="Маки с огурцом" loading="lazy" decoding="async"/><div class="body"><div class="name">Маки с огурцом</div><div class="meta">160 г</div><div class="price">250 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Маки с тунцом"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/1605db2e8594fd85704d5f8924c3e8a6.JPEG" alt="Маки с тунцом" loading="lazy" decoding="async"/><div class="body"><div class="name">Маки с тунцом</div><div class="meta">160 г</div><div class="price">350 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Маки с угрем"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/70ec52275b028f82c17fa9e45a8cfeff.JPEG" alt="Маки с угрем" loading="lazy" decoding="async"/><div class="body"><div class="name">Маки с угрем</div><div class="meta">170 г</div><div class="price">490 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Маки с креветкой"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/f6b43195230228b25593e360448a0273.JPEG" alt="Маки с креветкой" loading="lazy" decoding="async"/><div class="body"><div class="name">Маки с креветкой</div><div class="meta">160 г</div><div class="price">350 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article></div></section><section id="cat-ролл-классика"><h2 class="section">РОЛЛ КЛАССИКА</h2><div class="grid"><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Магуро"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/d437d3410ef7e7f457daf8639ca499cd.JPEG" alt="Магуро" loading="lazy" decoding="async"/><div class="body"><div class="name">Магуро</div><div class="meta">220 г</div><div class="price">690 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Филадельфия"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/abca4e0ee30a47e85a0a7239e13938d9.JPEG" alt="Филадельфия" loading="lazy" decoding="async"/><div class="body"><div class="name">Филадельфия</div><div class="meta">260 г</div><div class="price">890 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Цыпленок в устричном соусе"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/db73a1c2881cc803d7dc860bbd304abb.JPEG" alt="Цыпленок в устричном соусе" loading="lazy" decoding="async"/><div class="body"><div class="name">Цыпленок в устричном соусе</div><div class="meta">220 г</div><div class="price">490 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Калифорния"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/99408801ce88024a72c78d1a64545fb3.JPEG" alt="Калифорния" loading="lazy" decoding="async"/><div class="body"><div class="name">Калифорния</div><div class="meta">220 г</div><div class="price">690 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Унаги"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/fdf1a31369c1be9888f1d08740d25909.JPEG" alt="Унаги" loading="lazy" decoding="async"/><div class="body"><div class="name">Унаги</div><div class="meta">240 г</div><div class="price">890 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article></div></section><section id="cat-ролл-темпура"><h2 class="section">РОЛЛ ТЕМПУРА</h2><div class="grid"><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Темпура с лососем"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/6b495d2cb836a7ca828fa95aad1a32b0.JPEG" alt="Темпура с лососем" loading="lazy" decoding="async"/><div class="body"><div class="name">Темпура с лососем</div><div class="meta">280 г</div><div class="price">890 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Темпура с курицей"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/4ee3c19f98dc2349e35af754cc950149.JPEG" alt="Темпура с курицей" loading="lazy" decoding="async"/><div class="body"><div class="name">Темпура с курицей</div><div class="meta">280 г</div><div class="price">490 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Темпура с креветкой"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/c583ec95511a856139f39b9285f3d81c.JPEG" alt="Темпура с креветкой" loading="lazy" decoding="async"/><div class="body"><div class="name">Темпура с креветкой</div><div class="meta">280 г</div><div class="price">690 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Темпура с угрем"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/48f80ff6f1d96a4318be06dc6116703c.JPEG" alt="Темпура с угрем" loading="lazy" decoding="async"/><div class="body"><div class="name">Темпура с угрем</div><div class="meta">280 г</div><div class="price">890 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Темпура с тунцом"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/0d7470c8903de23e0599f2d9b092a208.JPEG" alt="Темпура с тунцом" loading="lazy" decoding="async"/><div class="body"><div class="name">Темпура с тунцом</div><div class="meta">280 г</div><div class="price">690 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article></div></section><section id="cat-премиум-ролл"><h2 class="section">ПРЕМИУМ РОЛЛ</h2><div class="grid"><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Татаки тунец Премиум"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/725961f0c32f7d8dd07198d5be8b32ec.JPEG" alt="Татаки тунец Премиум" loading="lazy" decoding="async"/><div class="body"><div class="name">Татаки тунец Премиум</div><div class="meta">340 г</div><div class="price">1 090 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Креветка темпура Премиум"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/a85163667e70e45e5965a8e59cac2a52.JPEG" alt="Креветка темпура Премиум" loading="lazy" decoding="async"/><div class="body"><div class="name">Креветка темпура Премиум</div><div class="meta">320 г</div><div class="price">990 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Филадельфия Премиум"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/d4e19ef62116f208fbf553610f385a01.JPEG" alt="Филадельфия Премиум" loading="lazy" decoding="async"/><div class="body"><div class="name">Филадельфия Премиум</div><div class="meta">360 г</div><div class="price">1 290 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Дракон Премиум"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/4af03026a1313326d00a7541dcddc357.JPEG" alt="Дракон Премиум" loading="lazy" decoding="async"/><div class="body"><div class="name">Дракон Премиум</div><div class="meta">330 г</div><div class="price">1 190 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article></div></section><section id="cat-онигири"><h2 class="section">ОНИГИРИ</h2><div class="grid"><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Онигири с лососем акция"></button><span class="menuimg menuimg--ph"><img class="menuimg-art" src="/placeholders/susi.svg" alt="Фото блюда Онигири с лососем акция скоро появится" loading="lazy" decoding="async"/><span class="menuimg-note" aria-hidden="true">Фото будет, когда пар осядет</span></span><div class="body"><div class="name">Онигири с лососем акция</div><div class="meta">120 г</div><div class="price">не число ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Онигири с угрем"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/95e4fd76d50329a7cfd9088a0468e527.JPEG" alt="Онигири с угрем" loading="lazy" decoding="async"/><div class="body"><div class="name">Онигири с угрем</div><div class="meta">120 г</div><div class="price">390 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Онигири с тунцом"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/667add7711174baf63660f9812579ce1.JPEG" alt="Онигири с тунцом" loading="lazy" decoding="async"/><div class="body"><div class="name">Онигири с тунцом</div><div class="meta">120 г</div><div class="price">290 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Онигири с креветкой"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/a2dd56bccababb5bd0c971c3cd764ca7.JPEG" alt="Онигири с креветкой" loading="lazy" decoding="async"/><div class="body"><div class="name">Онигири с креветкой</div><div class="meta">120 г</div><div class="price">320 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Онигири с лососем"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/6abae411f3fdf28e0b937624305e0dfe.JPEG" alt="Онигири с лососем" loading="lazy" decoding="async"/><div class="body"><div class="name">Онигири с лососем</div><div class="meta">120 г</div><div class="price">350 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Онигири с курицей"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/cdb75ac17d4897f4e996993bff7ddc0f.JPEG" alt="Онигири с курицей" loading="lazy" decoding="async"/><div class="body"><div class="name">Онигири с курицей</div><div class="meta">120 г</div><div class="price">190 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article></div></section><section id="cat-закуски"><h2 class="section">ЗАКУСКИ</h2><div class="grid"><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Капуста кимчи"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/feab06f5eeeb713f57ca216117da51d7.JPEG" alt="Капуста кимчи" loading="lazy" decoding="async"/><div class="body"><div class="name">Капуста кимчи</div><div class="meta">100 г</div><div class="price">190 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Гедза с креветкой"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/05cd51feff6ccc12e7f8e8f3c99e0254.JPEG" alt="Гедза с креветкой" loading="lazy" decoding="async"/><div class="body"><div class="name">Гедза с креветкой</div><div class="meta">300 г</div><div class="price">750 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Курица карааге"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/cc195a1b988f65746492f12749cac299.JPEG" alt="Курица карааге" loading="lazy" decoding="async"/><div class="body"><div class="name">Курица карааге</div><div class="meta">150 г</div><div class="price">320 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Битый огурцы с чили хлопьями"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/0366eaf549ac5bbf1ddc180ad1f88e8b.JPEG" alt="Битый огурцы с чили хлопьями" loading="lazy" decoding="async"/><div class="body"><div class="name">Битый огурцы с чили хлопьями</div><div class="meta">100 г</div><div class="price">190 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Креветки темпура"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/45a2563fa8bde1676444e3054fbdd9c4.JPEG" alt="Креветки темпура" loading="lazy" decoding="async"/><div class="body"><div class="name">Креветки темпура</div><div class="meta">150 г</div><div class="price">590 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Гедза со свининой"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/453a4c743718bca89961dd80e621e5c6.JPEG" alt="Гедза со свининой" loading="lazy" decoding="async"/><div class="body"><div class="name">Гедза со свининой</div><div class="meta">300 г</div><div class="price">440 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Чука гамадари"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/aa299adb1b2b5118b2bc0fa851bf33cb.JPEG" alt="Чука гамадари" loading="lazy" decoding="async"/><div class="body"><div class="name">Чука гамадари</div><div class="meta">100 г</div><div class="price">190 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article></div></section><section id="cat-горячие-блюда"><h2 class="section">ГОРЯЧИЕ БЛЮДА</h2><div class="grid"><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Кацу сандо с говядиной"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/a68ba921383de3be7de3c2c6dfce113b.JPEG" alt="Кацу сандо с говядиной" loading="lazy" decoding="async"/><div class="body"><div class="name">Кацу сандо с говядиной</div><div class="meta">250 г</div><div class="price">490 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Донбури терияки со свининой"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/7a515190f82fd26db2c9d03e9d02fc2a.JPEG" alt="Донбури терияки со свининой" loading="lazy" decoding="async"/><div class="body"><div class="name">Донбури терияки со свининой</div><div class="meta">320 г</div><div class="price">590 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Донбури том ям с креветками"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/c6bb3bd0be95f46a3671f319da017d67.JPEG" alt="Донбури том ям с креветками" loading="lazy" decoding="async"/><div class="body"><div class="name">Донбури том ям с креветками</div><div class="meta">320 г</div><div class="price">690 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Кацудон карри с цыпленком"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/0b432334a46a635b9e3d010119e42ef0.JPEG" alt="Кацудон карри с цыпленком" loading="lazy" decoding="async"/><div class="body"><div class="name">Кацудон карри с цыпленком</div><div class="meta">340 г</div><div class="price">490 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Донбури падтай с говядиной"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/8c6ae0bea0042fa4fad38d0fc88c4353.JPEG" alt="Донбури падтай с говядиной" loading="lazy" decoding="async"/><div class="body"><div class="name">Донбури падтай с говядиной</div><div class="meta">280 г</div><div class="price">не число ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Донбури мисо с говядиной"></button><span class="menuimg menuimg--ph"><img class="menuimg-art" src="/placeholders/susi.svg" alt="Фото блюда Донбури мисо с говядиной скоро появится" loading="lazy" decoding="async"/><span class="menuimg-note" aria-hidden="true">Фото будет, когда пар осядет</span></span><div class="body"><div class="name">Донбури мисо с говядиной</div><div class="meta">310 г</div><div class="price">790 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article></div></section><section id="cat-салаты"><h2 class="section">САЛАТЫ</h2><div class="grid"><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Японский цезарь с хрустящим цыпленком"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/d891eb4df2c595787982d38a1ead43fd.JPEG" alt="Японский цезарь с хрустящим цыпленком" loading="lazy" decoding="async"/><div class="body"><div class="name">Японский цезарь с хрустящим цыпленком</div><div class="meta">220 г</div><div class="price">490 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Салат с угрем и битыми огурцами"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/296b2ef2e6cd66dab8c4184e5e403586.JPEG" alt="Салат с угрем и битыми огурцами" loading="lazy" decoding="async"/><div class="body"><div class="name">Салат с угрем и битыми огурцами</div><div class="meta">160 г</div><div class="price">790 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article><article class="card card--openable"><button type="button" class="card-open" aria-haspopup="dialog" aria-label="Открыть карточку блюда: Салат с креветками в миндале"></button><img class="menuimg menuimg--photo" src="https://16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru/nikolaev-grupp-co/90138/77971/images/items/2446ca74519fe75c3aa38452414861c3.JPEG" alt="Салат с креветками в миндале" loading="lazy" decoding="async"/><div class="body"><div class="name">Салат с креветками в миндале</div><div class="meta">250 г</div><div class="price">790 ₽</div><button class="add" aria-live="polite">В корзину</button></div></article></div></section><p class="note">Меню «<!-- -->SUSI 10/04/26 Final<!-- -->» из iiko, обновление раз в минуту. Позиции без наличия помечены автоматически. <!-- -->На Горького, 72<!-- --> можно собрать один заказ из разных брендов — но только с одной точки.</p><footer class="sitefooter"><nav class="sitefooter-docs" aria-label="Юридические документы"><span class="sitefooter-item"><a href="legal/oferta">Оферта</a><span class="sitefooter-sep"> · </span></span><span class="sitefooter-item"><a href="legal/policy">Политика конфиденциальности</a><span class="sitefooter-sep"> · </span></span><span class="sitefooter-item"><a href="legal/cookies">Политика cookies</a><span class="sitefooter-sep"> · </span></span><span class="sitefooter-item"><a href="legal/user-agree">Пользовательское соглашение</a><span class="sitefooter-sep"> · </span></span><span class="sitefooter-item"><a href="legal/agree">Согласие на обработку ПД</a><span class="sitefooter-sep"> · </span></span><span class="sitefooter-item"><a href="legal/152fz">152-ФЗ</a></span></nav><p class="sitefooter-copy">© 2026 Николаев Групп</p><p class="sitefooter-note">Сайт использует cookies</p></footer></div></main></body></html>

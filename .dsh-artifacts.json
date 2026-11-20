@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "artifacts": {
+    "ngfood-preview": {
+      "id": "ngfood-preview",
+      "title": "Сайт ngfood — просмотр",
+      "kind": "html",
+      "createdAt": "2026-11-20T09:33:05.175Z",
+      "updatedAt": "2026-11-20T09:33:05.175Z",
+      "rev": 1,
+      "files": [
+        "brand/gorky-black.png",
+        "brand/gorky-white.png",
+        "brand/sladkiy-pink.png",
+        "brand/susi-green.png",
+        "brand/susi-white.png",
+        "delivery.html",
+        "games.html",
+        "gorky.html",
+        "index.html",
+        "pasta.html",
+        "susi.html"
+      ],
+      "description": "Статичный снапшот сайта ngfood: главная, меню трёх брендов, доставка, игры"
+    }
+  },
+  "tombstones": []
+}
