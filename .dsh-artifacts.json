@@ -6,11 +6,12 @@
       "title": "Сайт ngfood — просмотр",
       "kind": "html",
       "createdAt": "2026-11-20T09:33:05.175Z",
-      "updatedAt": "2026-11-20T09:56:09.457Z",
-      "rev": 3,
+      "updatedAt": "2026-11-20T10:08:22.029Z",
+      "rev": 4,
       "files": [
         "assets/app.css",
         "assets/brand/gorky-white.png",
+        "assets/brand/pasta-white.svg",
         "assets/brand/susi-white.png",
         "assets/covers/gorky-hero.jpg",
         "assets/covers/gorky.jpg",
@@ -34,7 +35,7 @@
         "pasta.html",
         "susi.html"
       ],
-      "description": "Снапшот сайта с картинками: обложки, логотипы, заглушки блюд"
+      "description": "Снапшот: обложки целиком, логотип Pasta, фото блюд без искажений"
     }
   },
   "tombstones": []
